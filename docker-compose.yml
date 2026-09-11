@@ -1,0 +1,45 @@
+services:
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress_secure_root
+      MYSQL_DATABASE: custom
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress_secure_pass
+    # Порт 3306 убран, чтобы избежать конфликтов с локальным MySQL на ПК
+    volumes:
+      - ./.srv/database:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:latest
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress_secure_pass
+      WORDPRESS_DB_NAME: custom
+    ports:
+      - "8000:80"
+    volumes:
+      - ./.srv/wordpress:/var/www/html
+      - ./themes/:/var/www/html/wp-content/themes/
+      - ./plugins/:/var/www/html/wp-content/plugins/
+      - ./mu-plugins/:/var/www/html/wp-content/mu-plugins/
+      # Убедитесь, что этот файл существует на диске перед запуском:
+      - ./.srv/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+    depends_on:
+      - mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    environment:
+      MYSQL_USERNAME: wordpress
+      MYSQL_ROOT_PASSWORD: wordpress_secure_root
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    ports:
+      - "8181:80"
+    depends_on:
+      - mysql
