@@ -1,21 +1,18 @@
 <?php get_header(); ?>
 
-<div class="container">
+<div class="container section">
     <?php if ( have_posts() ) : ?>
         <div class="posts-grid">
             <?php while ( have_posts() ) : the_post(); ?>
-                <?php get_template_part( 'template-parts/content', get_post_type() ); ?>
+                <article id="post-<?php the_ID(); ?>" <?php post_class( 'post-card' ); ?>>
+                    <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                    <?php the_excerpt(); ?>
+                </article>
             <?php endwhile; ?>
         </div>
-
-        <?php
-        the_posts_pagination( [
-            'prev_text' => '←',
-            'next_text' => '→',
-        ] );
-        ?>
+        <?php the_posts_pagination(); ?>
     <?php else : ?>
-        <?php get_template_part( 'template-parts/content', 'none' ); ?>
+        <p>Записей не найдено.</p>
     <?php endif; ?>
 </div>
 

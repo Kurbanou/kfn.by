@@ -1,14 +1,10 @@
 <?php
-// inc/setup.php — базовая настройка
-
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-add_action( 'after_setup_theme', 'mytheme_setup' );
-function mytheme_setup() {
-    // Переводы
-    load_theme_textdomain( 'mytheme', MYTHEME_DIR . '/languages' );
+add_action( 'after_setup_theme', 'wg_setup' );
+function wg_setup() {
+    load_theme_textdomain( 'webgrodno', WG_DIR . '/languages' );
 
-    // Базовые фичи
     add_theme_support( 'title-tag' );
     add_theme_support( 'post-thumbnails' );
     add_theme_support( 'automatic-feed-links' );
@@ -18,25 +14,24 @@ function mytheme_setup() {
         'gallery', 'caption', 'style', 'script'
     ] );
 
-    // Меню
     register_nav_menus( [
-        'primary' => __( 'Главное меню', 'mytheme' ),
-        'footer'  => __( 'Меню в подвале', 'mytheme' ),
-    ] );
-
-    // Размеры изображений
-    add_image_size( 'mytheme-card', 600, 400, true );
-}
-
-// Виджеты
-add_action( 'widgets_init', 'mytheme_widgets' );
-function mytheme_widgets() {
-    register_sidebar( [
-        'name'          => __( 'Сайдбар', 'mytheme' ),
-        'id'            => 'sidebar-1',
-        'before_widget' => '<section class="widget %2$s">',
-        'after_widget'  => '</section>',
-        'before_title'  => '<h3 class="widget-title">',
-        'after_title'   => '</h3>',
+        'primary' => __( 'Главное меню', 'webgrodno' ),
+        'footer'  => __( 'Меню в подвале', 'webgrodno' ),
     ] );
 }
+
+// Класс для <li>
+add_filter( 'nav_menu_css_class', function( $classes, $item, $args ) {
+    if ( 'primary' === $args->theme_location ) {
+        $classes[] = 'nav__item';
+    }
+    return $classes;
+}, 10, 3 );
+
+// Класс для <a>
+add_filter( 'nav_menu_link_attributes', function( $atts, $item, $args ) {
+    if ( 'primary' === $args->theme_location ) {
+        $atts['class'] = 'nav__link';
+    }
+    return $atts;
+}, 10, 3 );

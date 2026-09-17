@@ -1,13 +1,13 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-    exit; // защита от прямого доступа
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'MYTHEME_VERSION', '1.0.0' );
-define( 'MYTHEME_DIR', get_template_directory() );
-define( 'MYTHEME_URI', get_template_directory_uri() );
+define( 'WG_VERSION', '1.0.0' );
+define( 'WG_DIR', get_template_directory() );
+define( 'WG_URI', get_template_directory_uri() );
 
-require_once MYTHEME_DIR . '/inc/setup.php';
-require_once MYTHEME_DIR . '/inc/enqueue.php';
-require_once MYTHEME_DIR . '/inc/security.php';
-require_once MYTHEME_DIR . '/inc/cleanup.php';
+require_once WG_DIR . '/inc/setup.php';
+require_once WG_DIR . '/inc/enqueue.php';
+require_once WG_DIR . '/inc/security.php';
+require_once WG_DIR . '/inc/cleanup.php';
+require_once WG_DIR . '/inc/schema.php';
+require_once WG_DIR . '/inc/form.php';

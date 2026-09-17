@@ -2,38 +2,40 @@
 <html <?php language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="profile" href="https://gmpg.org/xfn/11">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<a class="skip-link screen-reader-text" href="#content">
-    <?php esc_html_e( 'Перейти к содержимому', 'mytheme' ); ?>
-</a>
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <div class="container header__inner">
+        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="header__logo" aria-label="<?php bloginfo( 'name' ); ?> — на главную">
+            <svg class="header__logo-icon" width="32" height="32" aria-hidden="true">
+                <use href="#icon-logo"></use>
+            </svg>
+            <span class="header__logo-text"><?php bloginfo( 'name' ); ?></span>
+        </a>
 
-<header class="site-header">
-    <div class="container">
-        <div class="site-branding">
-            <?php if ( has_custom_logo() ) : the_custom_logo(); else : ?>
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-                    <?php bloginfo( 'name' ); ?>
-                </a>
-            <?php endif; ?>
-        </div>
+        <button class="header__burger" aria-label="Открыть меню" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
 
-        <nav class="main-nav" aria-label="<?php esc_attr_e( 'Главное меню', 'mytheme' ); ?>">
+        <nav class="header__nav nav" aria-label="Основная навигация">
             <?php
             wp_nav_menu( [
                 'theme_location' => 'primary',
                 'container'      => false,
+                'menu_class'     => 'nav__list',
+                'items_wrap'     => '<ul class="%2$s">%3$s</ul>',
                 'fallback_cb'    => false,
-                'depth'          => 2,
+                'depth'          => 1,
             ] );
             ?>
+            <a href="#form" class="btn btn--primary nav__cta">Получить КП</a>
         </nav>
     </div>
 </header>
 
-<main id="content" class="site-content">
+<main>
