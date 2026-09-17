@@ -1,28 +1,13 @@
 <?php
-
-/**
- * Functions and definitions
- *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
- *
- * @package custom
- * @since 1.0.0
- */
-
-/**
- * Enqueue the CSS files.
- *
- * @since 1.0.0
- *
- * @return void
- */
-function custom_styles()
-{
-	wp_enqueue_style(
-		'custom-style',
-		get_stylesheet_uri(),
-		[],
-		wp_get_theme()->get('Version')
-	);
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // защита от прямого доступа
 }
-add_action('wp_enqueue_scripts', 'custom_styles');
+
+define( 'MYTHEME_VERSION', '1.0.0' );
+define( 'MYTHEME_DIR', get_template_directory() );
+define( 'MYTHEME_URI', get_template_directory_uri() );
+
+require_once MYTHEME_DIR . '/inc/setup.php';
+require_once MYTHEME_DIR . '/inc/enqueue.php';
+require_once MYTHEME_DIR . '/inc/security.php';
+require_once MYTHEME_DIR . '/inc/cleanup.php';
