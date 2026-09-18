@@ -1,4 +1,12 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Template Name: main page
+ * Шаблон Главной страницы 
+ */
+
+get_header();
+?>
+
 
 <!-- ================= HERO ================= -->
 <section class="hero">
