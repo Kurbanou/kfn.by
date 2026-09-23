@@ -22,17 +22,19 @@
             ?>
         </nav>
 
-        <div class="footer__col">
+            <div class="footer__col">
             <h3 class="footer__title">Контакты</h3>
             <address class="footer__address">
-                <p>г. Гродно, ул. Примерная, 1</p>
-                <p><a href="tel:+375151234567">+375 15 123-45-67</a></p>
-                <p><a href="mailto:hello@вашдомен.by">hello@вашдомен.by</a></p>
+                <p>г. Гродно · работаем по всей Беларуси</p>
+                <p><a href="tel:+375298885419">+375 29 888-54-19</a></p>
+                <p><a href="mailto:kurbanou.faridun@gmail.com">kurbanou.faridun@gmail.com</a></p>
             </address>
+            <?php /* Ссылки на бизнес-профили — раскомментировать после создания
             <p class="footer__social">
-                <a href="#" rel="noopener">Google Business</a> ·
-                <a href="#" rel="noopener">Яндекс Бизнес</a>
+                <a href="URL_GOOGLE" target="_blank" rel="noopener">Google Business</a> ·
+                <a href="URL_YANDEX" target="_blank" rel="noopener">Яндекс Бизнес</a>
             </p>
+            */ ?>
         </div>
     </div>
 

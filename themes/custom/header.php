@@ -40,4 +40,11 @@
         </div>
     </header>
 
-    <main class="site-main">
+    <main class="site-main">            
+        <?php if ( function_exists( 'rank_math_the_breadcrumbs' ) && ! is_front_page() ) : ?>
+            <div class="container">
+                <div class="breadcrumbs-wrapper">
+                    <?php rank_math_the_breadcrumbs(); ?>
+                </div>
+            </div>
+        <?php endif; ?>

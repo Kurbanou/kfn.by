@@ -22,11 +22,14 @@ services:
     ports:
       - "8000:80"
     volumes:
-      # ⚠️ ЯДРО WP — ВНУТРИ DOCKER (НЕ монтируем!)
-      # Это ключевое правило для Windows + Docker:
-      # если монтировать /var/www/html с Windows-диска — права ломаются
+      # ⚠️ ЯДРО WP — ВНУТРИ DOCKER (НЕ монтируем с Windows!)
+      # Named volume — чтобы wp-cli видел то же ядро
+
+      # Named volume для ядра WP
+      - wp_core:/var/www/html
 
       # Только СВОИ папки монтируем
+      # Медиатека идёт в themes/custom/assets/uploads/ через фильтр upload_dir
       - ./themes/:/var/www/html/wp-content/themes/
       - ./plugins/:/var/www/html/wp-content/plugins/
       - ./mu-plugins/:/var/www/html/wp-content/mu-plugins/
@@ -35,6 +38,25 @@ services:
       - ./.srv/custom.ini:/usr/local/etc/php/conf.d/custom.ini
     depends_on:
       - mysql
+
+  wp-cli:
+    image: wordpress:cli
+    user: "33:33"
+    restart: "no"
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress_secure_pass
+      WORDPRESS_DB_NAME: custom
+    volumes:
+      - wp_core:/var/www/html
+      - ./themes/:/var/www/html/wp-content/themes/
+      - ./plugins/:/var/www/html/wp-content/plugins/
+      - ./mu-plugins/:/var/www/html/wp-content/mu-plugins/
+    depends_on:
+      - mysql
+    profiles:
+      - cli
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -48,3 +70,6 @@ services:
       - "8181:80"
     depends_on:
       - mysql
+
+volumes:
+  wp_core:

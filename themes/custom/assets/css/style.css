@@ -911,3 +911,55 @@ p {
     scroll-behavior: auto !important;
   }
 }
+
+/* ==========================================================
+   BREADCRUMBS (Rank Math)
+   ========================================================== */
+.breadcrumbs-wrapper {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 20px var(--gutter) 0;
+}
+
+.rank-math-breadcrumb {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.rank-math-breadcrumb p {
+  margin: 0;
+}
+
+.rank-math-breadcrumb a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.rank-math-breadcrumb a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.rank-math-breadcrumb .separator {
+  margin: 0 8px;
+  color: var(--color-border);
+}
+
+.rank-math-breadcrumb .last {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+@media (min-width: 640px) {
+  .breadcrumbs-wrapper {
+    padding: 24px var(--gutter) 0;
+  }
+}
+
+@media (min-width: 960px) {
+  .breadcrumbs-wrapper {
+    padding: 32px var(--gutter) 0;
+  }
+}
