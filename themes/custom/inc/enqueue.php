@@ -16,7 +16,7 @@ function wg_assets() {
         'wg-style',
         WG_URI . '/assets/css/style.css',
         [ 'wg-fonts' ],
-        WG_VERSION
+        filemtime( WG_DIR . '/assets/css/style.css' )
     );
 
     // JS (defer уже не нужен — WP сам ставит в footer)
@@ -24,7 +24,7 @@ function wg_assets() {
         'wg-main',
         WG_URI . '/assets/js/main.js',
         [],
-        WG_VERSION,
+        filemtime( WG_DIR . '/assets/js/main.js' ),
         true
     );
 }

@@ -302,10 +302,10 @@ get_header();
             <p class="cta__text">
                 Оставьте заявку — перезвоним в течение 15 минут и бесплатно рассчитаем стоимость.
             </p>
-            <ul class="cta__contacts">
-                <li><a href="tel:+375151234567">+375 15 123-45-67</a></li>
-                <li><a href="mailto:hello@вашдомен.by">hello@вашдомен.by</a></li>
-            </ul>
+                <ul class="cta__contacts">
+                    <li><a href="tel:+375298885419">+375 29 888-54-19</a></li>
+                    <li><a href="mailto:kurbanou.faridun@gmail.com">kurbanou.faridun@gmail.com</a></li>
+                </ul>
         </div>
 
         <?php // Форма — см. пункт 8 ниже ?>
