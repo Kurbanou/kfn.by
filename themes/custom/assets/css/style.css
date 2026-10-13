@@ -963,3 +963,192 @@ p {
     padding: 32px var(--gutter) 0;
   }
 }
+
+/* ==========================================================
+   PORTFOLIO FILTERS
+   ========================================================== */
+.portfolio-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.portfolio-filters__item {
+  display: inline-flex;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 100px;
+  background: var(--color-bg-gray);
+  color: var(--color-text-muted);
+  transition: var(--transition);
+}
+.portfolio-filters__item:hover {
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--color-accent);
+}
+.portfolio-filters__item.is-active {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ==========================================================
+   PORTFOLIO EMPTY STATE
+   ========================================================== */
+.portfolio-empty {
+  padding: 48px 24px;
+  text-align: center;
+  background: var(--color-bg-gray);
+  border-radius: var(--radius);
+}
+.portfolio-empty p {
+  font-size: 16px;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+.portfolio-empty a {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* ==========================================================
+   PORTFOLIO CARD — link wrapper
+   ========================================================== */
+.work__link-wrapper {
+  display: block;
+  color: inherit;
+  height: 100%;
+}
+.work__client {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+.work__text {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* ==========================================================
+   SINGLE PORTFOLIO
+   ========================================================== */
+.single-portfolio__header {
+  margin-bottom: 32px;
+}
+.single-portfolio__title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 12px 0;
+}
+.single-portfolio__client {
+  font-size: 15px;
+  color: var(--color-text-muted);
+}
+.single-portfolio__cover {
+  margin-bottom: 32px;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.single-portfolio__cover img {
+  width: 100%;
+  height: auto;
+}
+.single-portfolio__content {
+  margin-bottom: 40px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+.single-portfolio__section {
+  margin-bottom: 40px;
+}
+.single-portfolio__section--result {
+  padding: 24px;
+  background: var(--color-bg-gray);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+}
+.single-portfolio__gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.single-portfolio__gallery-item {
+  display: block;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: var(--transition);
+}
+.single-portfolio__gallery-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.single-portfolio__gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.single-portfolio__cta {
+  margin: 40px 0;
+  text-align: center;
+}
+.single-portfolio__back {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+/* ==========================================================
+   PAGINATION
+   ========================================================== */
+.pagination {
+  margin-top: 40px;
+}
+.pagination ul {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.pagination .page-numbers {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-gray);
+  color: var(--color-text);
+  transition: var(--transition);
+}
+.pagination .page-numbers:hover {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--color-accent);
+}
+.pagination .page-numbers.current {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+@media (min-width: 640px) {
+  .single-portfolio__gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 960px) {
+  .single-portfolio__title {
+    font-size: 40px;
+  }
+}
+
+.work__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

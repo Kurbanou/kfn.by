@@ -153,68 +153,77 @@ get_header();
     </div>
 </section>
 
-<!-- ================= ПОРТФОЛИО ================= -->
-<section class="portfolio section section--gray">
-    <div class="container">
-        <h2 class="section__title">Наши работы</h2>
-        <p class="section__subtitle">Примеры сайтов, которые уже приносят клиентов</p>
 
-        <ul class="portfolio__list">
-            <li class="portfolio__item work">
-                <div class="work__image work__image--1" aria-hidden="true"></div>
-                <div class="work__body">
-                    <span class="work__tag">E-commerce</span>
-                    <h3 class="work__title">Интернет-магазин «МебельГродно»</h3>
-                    <a href="<?php echo esc_url( home_url( '/portfolio/' ) ); ?>" class="work__link">Подробнее →</a>
-                </div>
-            </li>
-            <li class="portfolio__item work">
-                <div class="work__image work__image--2" aria-hidden="true"></div>
-                <div class="work__body">
-                    <span class="work__tag">Landing</span>
-                    <h3 class="work__title">Лендинг «СтройДом»</h3>
-                    <a href="<?php echo esc_url( home_url( '/portfolio/' ) ); ?>" class="work__link">Подробнее →</a>
-                </div>
-            </li>
-            <li class="portfolio__item work">
-                <div class="work__image work__image--3" aria-hidden="true"></div>
-                <div class="work__body">
-                    <span class="work__tag">WordPress</span>
-                    <h3 class="work__title">Корпоративный сайт «АвтоСервис»</h3>
-                    <a href="<?php echo esc_url( home_url( '/portfolio/' ) ); ?>" class="work__link">Подробнее →</a>
-                </div>
-            </li>
-            <li class="portfolio__item work">
-                <div class="work__image work__image--4" aria-hidden="true"></div>
-                <div class="work__body">
-                    <span class="work__tag">Tilda</span>
-                    <h3 class="work__title">Лендинг «Фитнес-клуб»</h3>
-                    <a href="<?php echo esc_url( home_url( '/portfolio/' ) ); ?>" class="work__link">Подробнее →</a>
-                </div>
-            </li>
-            <li class="portfolio__item work">
-                <div class="work__image work__image--5" aria-hidden="true"></div>
-                <div class="work__body">
-                    <span class="work__tag">WooCommerce</span>
-                    <h3 class="work__title">Интернет-магазин «ЦветыБел»</h3>
-                    <a href="<?php echo esc_url( home_url( '/portfolio/' ) ); ?>" class="work__link">Подробнее →</a>
-                </div>
-            </li>
-            <li class="portfolio__item work">
-                <div class="work__image work__image--6" aria-hidden="true"></div>
-                <div class="work__body">
-                    <span class="work__tag">WordPress</span>
-                    <h3 class="work__title">Сайт-визитка «Юрист Гродно»</h3>
-                    <a href="<?php echo esc_url( home_url( '/portfolio/' ) ); ?>" class="work__link">Подробнее →</a>
-                </div>
-            </li>
-        </ul>
+<!-- ================= ПОРТФОЛИО (из CPT) ================= -->
+<?php
+$portfolio_query = new WP_Query( [
+    'post_type'      => 'portfolio',
+    'posts_per_page' => 6,
+    'orderby'        => 'menu_order date',
+    'order'          => 'DESC',
+    'no_found_rows'  => true,
+] );
 
-        <div class="portfolio__cta">
-            <a href="<?php echo esc_url( home_url( '/portfolio/' ) ); ?>" class="btn btn--primary">Смотреть всё портфолио</a>
+if ( $portfolio_query->have_posts() ) : ?>
+    <section class="portfolio section section--gray">
+        <div class="container">
+            <h2 class="section__title">Наши работы</h2>
+            <p class="section__subtitle">Примеры сайтов, которые уже приносят клиентов</p>
+
+            <ul class="portfolio__list">
+                <?php while ( $portfolio_query->have_posts() ) : $portfolio_query->the_post(); ?>
+                    <?php
+                    $client = get_field( 'portfolio_client' );
+                    $short  = get_field( 'portfolio_short' );
+                    $cover  = get_field( 'portfolio_cover' );
+                    $terms  = get_the_terms( get_the_ID(), 'portfolio_type' );
+                    ?>
+                    <li class="portfolio__item work">
+                        <a href="<?php the_permalink(); ?>" class="work__link-wrapper">
+
+                            <?php if ( $cover && is_array( $cover ) ) : ?>
+                                <div class="work__image">
+                                    <img src="<?php echo esc_url( $cover['sizes']['medium_large'] ?? $cover['url'] ); ?>"
+                                         alt="<?php echo esc_attr( $cover['alt'] ?: get_the_title() ); ?>"
+                                         loading="lazy"
+                                         width="<?php echo esc_attr( $cover['sizes']['medium_large-width'] ?? '' ); ?>"
+                                         height="<?php echo esc_attr( $cover['sizes']['medium_large-height'] ?? '' ); ?>">
+                                </div>
+                            <?php else : ?>
+                                <div class="work__image work__image--1" aria-hidden="true"></div>
+                            <?php endif; ?>
+
+                            <div class="work__body">
+                                <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
+                                    <span class="work__tag"><?php echo esc_html( $terms[0]->name ); ?></span>
+                                <?php endif; ?>
+
+                                <h3 class="work__title"><?php the_title(); ?></h3>
+
+                                <?php if ( $client ) : ?>
+                                    <p class="work__client"><?php echo esc_html( $client ); ?></p>
+                                <?php endif; ?>
+
+                                <?php if ( $short ) : ?>
+                                    <p class="work__text"><?php echo esc_html( $short ); ?></p>
+                                <?php endif; ?>
+
+                                <span class="work__link">Подробнее →</span>
+                            </div>
+                        </a>
+                    </li>
+                <?php endwhile; ?>
+            </ul>
+
+            <div class="portfolio__cta">
+                <a href="<?php echo esc_url( get_permalink( 40 ) ); ?>" class="btn btn--primary">Смотреть всё портфолио</a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+<?php
+endif;
+wp_reset_postdata();
+?>
 
 <!-- ================= ПРОЦЕСС РАБОТЫ ================= -->
 <section class="process section">
