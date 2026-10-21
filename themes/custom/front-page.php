@@ -318,7 +318,8 @@ wp_reset_postdata();
         </div>
 
         <?php // Форма — см. пункт 8 ниже ?>
-        <?php get_template_part( 'template-parts/form' ); ?>
+        <!-- <?php get_template_part( 'template-parts/form' ); ?> -->
+         <?php echo do_shortcode( '[contact-form-7 id="7101a05" title="Форма заявки (главная)"]' ); ?>
     </div>
 </section>
 

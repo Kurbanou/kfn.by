@@ -1152,3 +1152,65 @@ p {
   object-fit: cover;
   display: block;
 }
+
+/* CF7 Honeypot — скрыт от людей, виден ботам */
+.cf7-honeypot-field,
+.cf7-honeypot-wrap {
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* CF7 response output — сообщения об успехе/ошибке */
+.wpcf7-response-output {
+  margin: 16px 0 0;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  display: none;
+}
+.wpcf7-form.sent .wpcf7-response-output,
+.wpcf7-form.failed .wpcf7-response-output,
+.wpcf7-form.invalid .wpcf7-response-output {
+  display: block;
+}
+.wpcf7-form.sent .wpcf7-response-output {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+.wpcf7-form.failed .wpcf7-response-output,
+.wpcf7-form.invalid .wpcf7-response-output {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+/* CF7 spinner (загрузка при AJAX-отправке) */
+.wpcf7-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: wpcf7-spin 0.6s linear infinite;
+}
+@keyframes wpcf7-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Скрыть индикатор, когда форма не отправляется */
+.wpcf7-form.submitting .wpcf7-spinner {
+  display: inline-block;
+}
+.wpcf7-form:not(.submitting) .wpcf7-spinner {
+  display: none;
+}
