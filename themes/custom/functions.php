@@ -13,6 +13,7 @@ require_once WG_DIR . '/inc/cleanup.php';
 require_once WG_DIR . '/inc/form.php';
 require_once WG_DIR . '/inc/post-types.php';
 require_once WG_DIR . '/inc/acf-fields.php';
+require_once WG_DIR . '/inc/shortcodes.php';
 
 
 /**
