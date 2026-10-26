@@ -199,3 +199,50 @@ add_filter( 'rank_math/json_ld', function( $data, $jsonld ) {
     }
     return $data;
 }, 99, 2 );
+
+
+/**
+ * FAQPage Schema для /wordpress/
+ */
+add_filter( 'rank_math/json_ld', function( $data, $jsonld ) {
+    if ( is_page( 'wordpress' ) ) {
+        $data['FAQPage'] = [
+            '@type'      => 'FAQPage',
+            'mainEntity' => [
+                [
+                    '@type'          => 'Question',
+                    'name'           => 'Почему WordPress, а не другая CMS?',
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => 'WordPress — самая популярная CMS в мире (43% всех сайтов). Она гибкая, безопасная, с огромным выбором плагинов и тем. Легко масштабируется и удобна для редактирования контента без программиста.',
+                    ],
+                ],
+                [
+                    '@type'          => 'Question',
+                    'name'           => 'Можно ли сделать интернет-магазин на WordPress?',
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => 'Да, через WooCommerce — это бесплатный плагин, который превращает WordPress в полноценный интернет-магазин с корзиной, оплатой и доставкой.',
+                    ],
+                ],
+                [
+                    '@type'          => 'Question',
+                    'name'           => 'Сколько стоит сайт на WordPress в Гродно?',
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => 'Сайт-визитка — от 500 BYN, корпоративный сайт — от 1500 BYN, интернет-магазин на WooCommerce — от 2500 BYN. Точная стоимость — после брифа.',
+                    ],
+                ],
+                [
+                    '@type'          => 'Question',
+                    'name'           => 'Будет ли сайт на WordPress быстрым и безопасным?',
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => 'Да, мы настраиваем кэширование, оптимизируем изображения (WebP), устанавливаем SSL и плагины безопасности. В результате — быстрый и защищённый сайт.',
+                    ],
+                ],
+            ],
+        ];
+    }
+    return $data;
+}, 99, 2 );
