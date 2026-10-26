@@ -35,3 +35,51 @@ function wg_custom_upload_dir( $uploads ) {
 
     return $uploads;
 }
+
+
+/**
+ * Блок «Смотрите также» для страниц (перелинковка)
+ */
+function wg_related_pages() {
+    if ( ! is_page() ) {
+        return;
+    }
+
+    $current = get_the_ID();
+
+    $related = [
+        'services'  => [ 'ecommerce', 'landing', 'prices' ],
+        'ecommerce' => [ 'portfolio', 'prices', 'contacts' ],
+        'landing'   => [ 'portfolio', 'prices', 'contacts' ],
+        'wordpress' => [ 'portfolio', 'prices', 'contacts' ],
+        'tilda'     => [ 'portfolio', 'prices', 'contacts' ],
+        'prices'    => [ 'services', 'portfolio', 'contacts' ],
+        'about'     => [ 'services', 'portfolio', 'contacts' ],
+    ];
+
+    $slug = get_post_field( 'post_name', $current );
+
+    if ( ! isset( $related[ $slug ] ) ) {
+        return;
+    }
+
+    echo '<section class="related-pages section section--gray">';
+    echo '<div class="container">';
+    echo '<h2 class="section__title">Смотрите также</h2>';
+    echo '<ul class="related-pages__list">';
+
+    foreach ( $related[ $slug ] as $related_slug ) {
+        $page = get_page_by_path( $related_slug );
+        if ( $page ) {
+            echo '<li class="related-pages__item">';
+            echo '<a href="' . esc_url( get_permalink( $page ) ) . '">';
+            echo esc_html( get_the_title( $page ) );
+            echo ' →</a>';
+            echo '</li>';
+        }
+    }
+
+    echo '</ul>';
+    echo '</div>';
+    echo '</section>';
+}

@@ -20,4 +20,8 @@ get_header();
 <?php endwhile; ?>
 
 
-<?php get_footer(); ?>
+
+
+<?php
+wg_related_pages();
+get_footer();
