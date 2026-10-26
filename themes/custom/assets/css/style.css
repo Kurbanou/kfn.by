@@ -1284,3 +1284,115 @@ p {
 .faq__answer p {
   margin: 0;
 }
+
+/* ==========================================================
+   PRICE TABLE
+   ========================================================== */
+.price-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background: #fff;
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  min-width: 600px;
+}
+
+.price-table thead {
+  background: var(--color-bg-gray);
+}
+
+.price-table th {
+  padding: 16px 20px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text);
+  border-bottom: 2px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.price-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+  vertical-align: middle;
+}
+
+.price-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.price-table tbody tr:hover {
+  background: rgba(37, 99, 235, 0.03);
+}
+
+.price-table strong {
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+.price-table a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.price-table a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile — карточки вместо таблицы */
+@media (max-width: 767px) {
+  .price-table-wrapper {
+    border: none;
+    background: transparent;
+  }
+  .price-table {
+    min-width: 0;
+    display: block;
+  }
+  .price-table thead {
+    display: none;
+  }
+  .price-table tbody,
+  .price-table tr,
+  .price-table td {
+    display: block;
+    width: 100%;
+  }
+  .price-table tr {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    padding: 16px 20px;
+  }
+  .price-table td {
+    padding: 6px 0;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 14px;
+  }
+  .price-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+  }
+  .price-table td:last-child {
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-border);
+  }
+  .price-table td:last-child::before {
+    display: none;
+  }
+}
