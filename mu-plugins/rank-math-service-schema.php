@@ -246,3 +246,49 @@ add_filter( 'rank_math/json_ld', function( $data, $jsonld ) {
     }
     return $data;
 }, 99, 2 );
+
+/**
+ * FAQPage Schema для /tilda/
+ */
+add_filter( 'rank_math/json_ld', function( $data, $jsonld ) {
+    if ( is_page( 'tilda' ) ) {
+        $data['FAQPage'] = [
+            '@type'      => 'FAQPage',
+            'mainEntity' => [
+                [
+                    '@type'          => 'Question',
+                    'name'           => 'Чем Tilda отличается от WordPress?',
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => 'Tilda — это конструктор сайтов без программирования. Быстрый запуск (1–3 дня), красивый дизайн «из коробки». Идеально для лендингов и сайтов-визиток. WordPress — гибче, но требует больше времени на разработку.',
+                    ],
+                ],
+                [
+                    '@type'          => 'Question',
+                    'name'           => 'Сколько стоит сайт на Tilda в Гродно?',
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => 'Лендинг на Tilda — от 600 BYN, сайт-визитка — от 800 BYN. В стоимость входит: дизайн, наполнение, адаптивность, подключение домена и настройка аналитики.',
+                    ],
+                ],
+                [
+                    '@type'          => 'Question',
+                    'name'           => 'Можно ли на Tilda сделать интернет-магазин?',
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => 'Да, Tilda поддерживает каталог товаров и приём оплаты. Но для больших магазинов (1000+ товаров) лучше подойдёт WooCommerce или отдельная платформа.',
+                    ],
+                ],
+                [
+                    '@type'          => 'Question',
+                    'name'           => 'За сколько дней сделаете сайт на Tilda?',
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => 'Стандартный срок — 3–5 дней. Если контент готов — можем сделать за 1–2 дня.',
+                    ],
+                ],
+            ],
+        ];
+    }
+    return $data;
+}, 99, 2 );
