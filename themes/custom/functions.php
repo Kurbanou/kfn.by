@@ -83,3 +83,26 @@ function wg_related_pages() {
     echo '</div>';
     echo '</section>';
 }
+
+/**
+ * Отключить комментарии на всём сайте
+ */
+add_action( 'admin_init', function() {
+    update_option( 'default_comment_status', 'closed' );
+    update_option( 'default_ping_status', 'closed' );
+} );
+
+add_filter( 'comments_open', '__return_false' );
+add_filter( 'pings_open', '__return_false' );
+
+add_action( 'admin_menu', function() {
+    remove_menu_page( 'edit-comments.php' );
+} );
+
+add_action( 'init', function() {
+    foreach ( get_post_types() as $post_type ) {
+        if ( post_type_supports( $post_type, 'comments' ) ) {
+            remove_post_type_support( $post_type, 'comments' );
+        }
+    }
+} );

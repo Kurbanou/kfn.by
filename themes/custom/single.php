@@ -82,12 +82,7 @@ get_header();
             <?php wp_reset_postdata(); ?>
         <?php endif; ?>
 
-        <?php
-        // Комментарии (если открыты)
-        if (comments_open() || get_comments_number()) {
-            comments_template();
-        }
-        ?>
+ 
 
     </article>
 <?php endwhile; ?>
