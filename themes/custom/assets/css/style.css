@@ -1624,13 +1624,23 @@ p {
   margin-bottom: 8px;
 }
 
-.entry-content a {
+/* .entry-content a {
   color: var(--color-accent);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 .entry-content a:hover {
+  color: var(--color-accent-hover);
+} */
+
+.entry-content a:not(.btn) {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.entry-content a:not(.btn):hover {
   color: var(--color-accent-hover);
 }
 
