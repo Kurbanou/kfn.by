@@ -13,11 +13,10 @@
     <!-- ================= HEADER ================= -->
     <header class="header">
         <div class="container header__inner">
-            <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo" aria-label="<?php bloginfo('name'); ?> — на главную">
-                <svg class="header__logo-icon" width="32" height="32" aria-hidden="true">
+           <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo" aria-label="<?php bloginfo('name'); ?> — на главную">
+                <svg class="header__logo-img"  aria-hidden="true">
                     <use href="#icon-logo"></use>
                 </svg>
-                <span class="header__logo-text"><?php bloginfo('name'); ?></span>
             </a>
 
             <button class="header__burger" aria-label="Открыть меню" aria-expanded="false">
