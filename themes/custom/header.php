@@ -34,7 +34,7 @@
                     'depth'          => 1,
                 ]);
                 ?>
-                <a href="#form" class="btn btn--primary nav__cta">Получить КП</a>
+                <a href="<?php echo esc_url( home_url( '/#form' ) ); ?>" class="btn btn--primary nav__cta">Получить КП</a>
             </nav>
         </div>
     </header>

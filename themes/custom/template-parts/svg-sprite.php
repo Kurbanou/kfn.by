@@ -1,5 +1,5 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <symbol id="icon-logo" viewBox="0 0 68 68">
+    <symbol id="icon-logo" viewBox="0 0 84 64">
         <!-- KFN -->
         <text x="0" y="42" font-family="Inter, sans-serif" font-size="42" font-weight="800" fill="#2563eb" letter-spacing="-1">KFN</text>
         <!-- Grodno Web Studio -->
