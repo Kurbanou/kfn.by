@@ -2028,6 +2028,8 @@ p {
     font-size 0.3s ease,
     font-weight 0.3s ease,
     letter-spacing 0.3s ease;
+
+  min-height: 1.4em; /* чтобы не «прыгало» когда пусто */
 }
 
 /* Кнопка перезапуска — всегда в DOM, но скрыта */

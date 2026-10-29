@@ -48,7 +48,7 @@ get_header();
                         </div>
                     </div>
                     <div class="browser__viewport">
-                        <h4 class="browser__title" id="browser-title">Hello, World!</h4>
+                        <h4 class="browser__title" id="browser-title"></h4>
                         <button class="browser__restart" id="browser-restart" aria-label="Перезапустить анимацию">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 12a9 9 0 1 1-9-9c2.5 0 4.8 1 6.4 2.6L21 8"/>

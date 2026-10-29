@@ -90,9 +90,13 @@
 
   if (!ideEl || !stylesEl || !titleEl) return;
 
-  const codeSteps = [
-    { text: "h4 {\n", type: "selector" },
-    { text: "  font-size: 22px;\n", type: "prop" },
+  // Фразы
+  const htmlText = "Hello, World!";
+
+  // CSS-код (печатается после HTML)
+  const cssSteps = [
+    { text: ".browser__viewport h4 {\n", type: "selector" },
+    { text: "  font-size: 42px;\n", type: "prop" },
     { text: "  font-weight: 800;\n", type: "prop" },
     {
       text: "  background: linear-gradient(135deg, #2563eb, #7c3aed);\n",
@@ -101,48 +105,66 @@
     { text: "  -webkit-background-clip: text;\n", type: "prop" },
     { text: "  -webkit-text-fill-color: transparent;\n", type: "prop" },
     { text: "  letter-spacing: -0.02em;\n", type: "prop" },
+    { text: "  font-size: 22px;\n", type: "prop" },
     { text: '  font-family: "Inter", sans-serif;\n', type: "prop" },
     { text: "  transition: transform 0.3s ease;\n", type: "prop" },
     { text: "}\n", type: "brace" },
     { text: "\n", type: "punct" },
-    { text: "h4:hover {\n", type: "selector" },
+    { text: ".browser__viewport h4:hover {\n", type: "selector" },
     { text: "  transform: scale(1.05);\n", type: "prop" },
     { text: "}\n", type: "brace" },
   ];
 
+  let phase = "html"; // 'html' → 'css' → 'done'
+  let htmlIndex = 0;
   let stepIndex = 0;
   let charIndex = 0;
 
   function reset() {
+    phase = "html";
+    htmlIndex = 0;
     stepIndex = 0;
     charIndex = 0;
     ideEl.innerHTML = "";
     stylesEl.textContent = "";
+    titleEl.textContent = "";
     titleEl.classList.remove("is-visible");
     if (restartBtn) restartBtn.classList.remove("is-visible");
   }
 
-  function typeNext() {
-    if (stepIndex >= codeSteps.length) {
-      // Анимация завершена — показать заголовок
-      titleEl.classList.add("is-visible");
-      // Спустя 0.8 сек — показать кнопку (через class)
+  function typeHTML() {
+    if (htmlIndex < htmlText.length) {
+      titleEl.textContent += htmlText[htmlIndex];
+      htmlIndex++;
+      setTimeout(typeHTML, 80);
+    } else {
+      // HTML готов — начинаем CSS
+      ideEl.insertAdjacentHTML(
+        "beforeend",
+        '<span class="tok-punct">\n</span>',
+      );
+      phase = "css";
+      typeCSS();
+    }
+  }
+
+  function typeCSS() {
+    if (stepIndex >= cssSteps.length) {
+      // Всё готово — показать кнопку
+      phase = "done";
       if (restartBtn) restartBtn.classList.add("is-visible");
       return;
     }
 
-    const step = codeSteps[stepIndex];
+    const step = cssSteps[stepIndex];
     const char = step.text[charIndex];
 
     ideEl.insertAdjacentHTML("beforeend", highlightChar(char, step.type));
     stylesEl.textContent =
-      ".browser__viewport " +
-      codeSteps
+      cssSteps
         .slice(0, stepIndex)
         .map((s) => s.text)
-        .join("") +
-      step.text.slice(0, charIndex + 1);
-
+        .join("") + step.text.slice(0, charIndex + 1);
     ideEl.scrollTop = ideEl.scrollHeight;
 
     charIndex++;
@@ -151,7 +173,7 @@
       stepIndex++;
     }
 
-    setTimeout(typeNext, 20 + Math.random() * 30);
+    setTimeout(typeCSS, 20 + Math.random() * 30);
   }
 
   function highlightChar(char, type) {
@@ -184,19 +206,21 @@
   ).matches;
 
   if (reducedMotion) {
-    ideEl.textContent = codeSteps.map((s) => s.text).join("");
-    stylesEl.textContent =
-      ".browser__viewport " + codeSteps.map((s) => s.text).join("");
-    if (restartBtn) restartBtn.hidden = true;
+    // Мгновенный финал
+    titleEl.textContent = htmlText;
+    ideEl.textContent = cssSteps.map((s) => s.text).join("");
+    stylesEl.textContent = cssSteps.map((s) => s.text).join("");
+    if (restartBtn) restartBtn.classList.add("is-visible");
     return;
   }
 
   if (restartBtn) {
     restartBtn.addEventListener("click", function () {
       reset();
-      typeNext();
+      typeHTML();
     });
   }
 
-  typeNext();
+  // Запуск: сначала HTML, потом CSS
+  typeHTML();
 })();
