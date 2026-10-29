@@ -1875,3 +1875,206 @@ p {
     top: 46px; /* на мобильном админ-бар выше */
   }
 }
+/* ==========================================================
+   HERO — IDE DEMO
+   ========================================================== */
+.ide-demo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .ide-demo {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+
+.window {
+  background: #1e1e2e;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  height: 400px;
+}
+
+.window__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #181825;
+  border-bottom: 1px solid #313244;
+  flex-shrink: 0;
+}
+
+.window__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.window__dot--red {
+  background: #f38ba8;
+}
+.window__dot--yellow {
+  background: #f9e2af;
+}
+.window__dot--green {
+  background: #a6e3a1;
+}
+
+.window__title {
+  margin-left: 12px;
+  font-size: 12px;
+  color: #6c7086;
+  font-family: "SF Mono", Consolas, monospace;
+}
+
+.ide__code {
+  flex: 1;
+  padding: 16px 20px;
+  overflow-y: auto;
+  font-family: "Fira Code", "JetBrains Mono", Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #cdd6f4;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.ide__code::-webkit-scrollbar {
+  width: 8px;
+}
+.ide__code::-webkit-scrollbar-thumb {
+  background: #313244;
+  border-radius: 4px;
+}
+
+/* Подсветка */
+.tok-selector {
+  color: #f38ba8;
+}
+.tok-prop {
+  color: #89b4fa;
+}
+.tok-value {
+  color: #a6e3a1;
+}
+.tok-brace {
+  color: #cba6f7;
+}
+.tok-punct {
+  color: #6c7086;
+}
+
+/* ==========================================================
+   PREVIEW — Браузер (светлый)
+   ========================================================== */
+.window--browser {
+  background: #fff;
+}
+
+.window--browser .window__bar {
+  background: #f5f7fa;
+  border-bottom: 1px solid #e5e9f0;
+}
+
+.browser__address {
+  flex: 1;
+  margin-left: 12px;
+  padding: 4px 12px;
+  background: #fff;
+  border: 1px solid #e5e9f0;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #5b6472;
+  font-family: "SF Mono", Consolas, monospace;
+}
+
+.browser__url {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.browser__viewport {
+  position: relative;
+  flex: 1;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.browser__title {
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: #1a1a1a;
+  text-align: center;
+  margin: 0;
+  display: inline-block; /* для transform */
+  transition:
+    transform 0.3s ease,
+    font-size 0.3s ease,
+    font-weight 0.3s ease,
+    letter-spacing 0.3s ease;
+}
+
+/* Кнопка перезапуска — всегда в DOM, но скрыта */
+.browser__restart {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  color: #2563eb;
+  cursor: pointer;
+  padding: 0;
+
+  /* Скрыто по умолчанию */
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none; /* не кликабельно */
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+  transition-delay: 0.8s; /* задержка 0.8 сек */
+}
+
+/* Когда появился класс is-visible — всплывает */
+.browser__restart.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Hover — поворот */
+.browser__restart.is-visible:hover {
+  background: #2563eb;
+  color: #fff;
+  transform: translateY(0) rotate(180deg);
+  transition-delay: 0s; /* hover работает сразу */
+}
+
+/* Адаптив */
+@media (max-width: 1150px) {
+  .hero__media {
+    display: none;
+  }
+}

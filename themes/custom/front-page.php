@@ -24,12 +24,45 @@ get_header();
         </div>
 
         <div class="hero__media">
-            <img src="<?php echo esc_url( WG_URI . '/assets/images/hero-screen.webp' ); ?>"
-                alt="Grodno Web Studio — разработка сайтов в Гродно"
-                class="hero__screen"
-                width="600" height="600"
-                loading="eager">
+            <div class="ide-demo">
+
+                <!-- IDE -->
+                <div class="window window--ide">
+                    <div class="window__bar">
+                        <span class="window__dot window__dot--red"></span>
+                        <span class="window__dot window__dot--yellow"></span>
+                        <span class="window__dot window__dot--green"></span>
+                        <span class="window__title">console.js</span>
+                    </div>
+                    <div class="ide__code" id="ide-code"></div>
+                </div>
+
+                <!-- Превью — Браузер -->
+                <div class="window window--browser">
+                    <div class="window__bar">
+                        <span class="window__dot window__dot--red"></span>
+                        <span class="window__dot window__dot--yellow"></span>
+                        <span class="window__dot window__dot--green"></span>
+                        <div class="browser__address">
+                            <span class="browser__url">localhost:8000</span>
+                        </div>
+                    </div>
+                    <div class="browser__viewport">
+                        <h4 class="browser__title" id="browser-title">Hello, World!</h4>
+                        <button class="browser__restart" id="browser-restart" aria-label="Перезапустить анимацию">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 12a9 9 0 1 1-9-9c2.5 0 4.8 1 6.4 2.6L21 8"/>
+                                <path d="M21 3v5h-5"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
         </div>
+
+        <!-- Контейнер для динамических стилей -->
+        <style id="live-styles"></style>
     </div>
 </section>
 
