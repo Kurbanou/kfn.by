@@ -24,15 +24,11 @@ get_header();
         </div>
 
         <div class="hero__media">
-            <div class="hero__mockup" aria-hidden="true">
-                <div class="hero__mockup-bar"></div>
-                <div class="hero__mockup-body">
-                    <span class="hero__mockup-line hero__mockup-line--w60"></span>
-                    <span class="hero__mockup-line hero__mockup-line--w80"></span>
-                    <span class="hero__mockup-line hero__mockup-line--w40"></span>
-                    <span class="hero__mockup-btn"></span>
-                </div>
-            </div>
+            <img src="<?php echo esc_url( WG_URI . '/assets/images/hero-screen.webp' ); ?>"
+                alt="Grodno Web Studio — разработка сайтов в Гродно"
+                class="hero__screen"
+                width="600" height="600"
+                loading="eager">
         </div>
     </div>
 </section>

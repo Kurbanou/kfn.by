@@ -276,46 +276,25 @@ p {
   gap: 12px;
 }
 
-/* Мокап-иллюстрация */
-.hero__mockup {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
-  padding: 16px;
-  max-width: 520px;
-  margin: 0 auto;
+/* Hero — картинка справа */
+.hero__screen {
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto; /* центрировать */
+  filter: drop-shadow(0 20px 40px rgba(37, 99, 235, 0.15)); /* мягкая тень */
 }
-.hero__mockup-bar {
-  height: 24px;
-  border-radius: 6px;
-  background: var(--color-bg-gray);
-  margin-bottom: 16px;
-}
-.hero__mockup-body {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.hero__mockup-line {
-  height: 12px;
-  border-radius: 6px;
-  background: var(--color-bg-gray);
-}
-.hero__mockup-line--w60 {
-  width: 60%;
-}
-.hero__mockup-line--w80 {
-  width: 80%;
-}
-.hero__mockup-line--w40 {
-  width: 40%;
-}
-.hero__mockup-btn {
-  width: 140px;
-  height: 40px;
-  border-radius: var(--radius-sm);
-  background: var(--color-accent);
-  margin-top: 12px;
+
+/* На мобильном — ограничить высоту */
+@media (max-width: 959px) {
+  .hero__media {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .hero__screen {
+    max-width: 100%;
+  }
 }
 
 /* ==========================================================
