@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="//localhost:8000/main-sitemap.xsl"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>http://localhost:8000/category/sozdanie-sajtov/</loc>
+		<lastmod>2026-10-28T06:06:05+00:00</lastmod>
+	</url>
+	<url>
+		<loc>http://localhost:8000/category/prilozheniya/</loc>
+		<lastmod>2026-10-28T07:18:51+00:00</lastmod>
+	</url>
+	<url>
+		<loc>http://localhost:8000/category/wordpress/</loc>
+		<lastmod>2026-10-28T07:22:17+00:00</lastmod>
+	</url>
+	<url>
+		<loc>http://localhost:8000/category/seo-prodvizhenie/</loc>
+		<lastmod>2026-10-28T06:39:59+00:00</lastmod>
+	</url>
+</urlset>
