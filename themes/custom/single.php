@@ -7,7 +7,7 @@ get_header();
 ?>
 
 <?php while (have_posts()) : the_post(); ?>
-    <article id="post-<?php the_ID(); ?>" <?php post_class('post-full container section'); ?>>
+    <article id="post-<?php the_ID(); ?>" <?php post_class('post-full container '); ?>>
 
         <header class="post-header">
             <h1 class="post-title"><?php the_title(); ?></h1>
@@ -41,13 +41,17 @@ get_header();
             <?php the_content(); ?>
         </div>
 
-        <?php
-        // Навигация: предыдущая / следующая запись
-        the_post_navigation([
-            'prev_text' => '← %title',
-            'next_text' => '%title →',
-        ]);
-        ?>
+
+
+        <div class="post-navigation">
+            <?php
+            the_post_navigation([
+                'prev_text' => '<span class="post-nav__label">← Предыдущая</span><span class="post-nav__title">%title</span>',
+                'next_text' => '<span class="post-nav__label">Следующая →</span><span class="post-nav__title">%title</span>',
+            ]);
+            ?>
+        </div>
+
 
         <?php
         // Похожие статьи (3 шт из той же категории)
@@ -64,17 +68,26 @@ get_header();
                 <div class="posts-grid">
                     <?php while ($related->have_posts()) : $related->the_post(); ?>
                         <article class="post-card">
-                            <?php if (has_post_thumbnail()) : ?>
-                                <a href="<?php the_permalink(); ?>" class="post-card__thumb">
-                                    <?php the_post_thumbnail('medium', ['loading' => 'lazy']); ?>
-                                </a>
-                            <?php endif; ?>
-                            <h3 class="post-card__title">
-                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                            </h3>
-                            <time datetime="<?php echo esc_attr(get_the_date(DATE_W3C)); ?>">
-                                <?php echo esc_html(get_the_date()); ?>
-                            </time>
+                            <a href="<?php the_permalink(); ?>" class="post-card__link">
+                                <?php if (has_post_thumbnail()) : ?>
+                                    <div class="post-card__thumb">
+                                        <?php the_post_thumbnail('medium_large', ['loading' => 'lazy']); ?>
+                                    </div>
+                                <?php else : ?>
+                                    <div class="post-card__thumb post-card__thumb--placeholder"></div>
+                                <?php endif; ?>
+                                <div class="post-card__body">
+                                    <?php
+                                    $categories = get_the_category();
+                                    if ($categories) : ?>
+                                        <span class="post-card__category"><?php echo esc_html($categories[0]->name); ?></span>
+                                    <?php endif; ?>
+                                    <h3 class="post-card__title"><?php the_title(); ?></h3>
+                                    <time class="post-card__meta" datetime="<?php echo esc_attr(get_the_date(DATE_W3C)); ?>">
+                                        <?php echo esc_html(get_the_date()); ?>
+                                    </time>
+                                </div>
+                            </a>
                         </article>
                     <?php endwhile; ?>
                 </div>
@@ -82,7 +95,7 @@ get_header();
             <?php wp_reset_postdata(); ?>
         <?php endif; ?>
 
- 
+
 
     </article>
 <?php endwhile; ?>

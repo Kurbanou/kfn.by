@@ -1565,6 +1565,15 @@ p {
 .post-full {
   max-width: 800px;
   margin: 0 auto;
+  padding-top: 48px;
+  padding-bottom: 64px;
+}
+
+@media (min-width: 640px) {
+  .post-full {
+    padding-top: 64px;
+    padding-bottom: 80px;
+  }
 }
 
 .post-header {
@@ -1698,33 +1707,60 @@ p {
 }
 
 /* Навигация: пред/след запись */
+
 .post-navigation {
   margin-top: 48px;
   padding-top: 32px;
-  border-top: 1px solid var(--color-border);
+  /* border-top: 1px solid var(--color-border); */
 }
 
 .post-navigation .nav-links {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .post-navigation .nav-links {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .post-navigation a {
-  display: block;
-  padding: 16px 20px;
-  background: var(--color-bg-gray);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 24px;
+  background: #fff;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-text);
   text-decoration: none;
   transition: var(--transition);
 }
 
 .post-navigation a:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.post-nav__label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: var(--color-accent);
-  background: rgba(37, 99, 235, 0.08);
+}
+
+.post-nav__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.post-navigation .nav-next {
+  text-align: right;
 }
 
 /* Похожие статьи */
@@ -1744,6 +1780,31 @@ p {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
+}
+
+.related-posts {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-border);
+}
+
+.related-posts__title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.related-posts .posts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 640px) {
+  .related-posts .posts-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (min-width: 640px) {
