@@ -1,25 +1,27 @@
 <?php
+
 /**
  * ACF: поля для CPT «Портфолио»
  *
  * @package custom
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
     exit;
 }
 
 /**
  * Группа полей для кейса портфолио
  */
-add_action( 'acf/init', 'wg_register_portfolio_fields' );
-function wg_register_portfolio_fields() {
+add_action('acf/init', 'wg_register_portfolio_fields');
+function wg_register_portfolio_fields()
+{
 
-    if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+    if (! function_exists('acf_add_local_field_group')) {
         return;
     }
 
-    acf_add_local_field_group( [
+    acf_add_local_field_group([
         'key'    => 'group_portfolio',
         'title'  => 'Детали кейса',
         'fields' => [
@@ -77,7 +79,7 @@ function wg_register_portfolio_fields() {
                 'required'     => 0,
             ],
 
-     // ── Обложка проекта ─────────────────────────────
+            // ── Обложка проекта ─────────────────────────────
             [
                 'key'           => 'field_portfolio_cover',
                 'label'         => 'Обложка проекта',
@@ -87,6 +89,15 @@ function wg_register_portfolio_fields() {
                 'preview_size'  => 'medium',
                 'instructions'  => 'Главная картинка кейса — выводится в карточке архива и на главной',
                 'required'      => 0,
+            ],
+            [
+                'key'          => 'field_portfolio_stack',
+                'label'        => 'Стек технологий',
+                'name'         => 'portfolio_stack',
+                'type'         => 'textarea',
+                'instructions' => 'Перечислите технологии через запятую (React, TypeScript, Chart.js)',
+                'rows'         => 2,
+                'required'     => 0,
             ],
 
         ],
@@ -105,5 +116,5 @@ function wg_register_portfolio_fields() {
         'label_placement'       => 'top',
         'instruction_placement' => 'label',
         'active'                => true,
-    ] );
+    ]);
 }
