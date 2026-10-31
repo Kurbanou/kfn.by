@@ -247,6 +247,168 @@ p {
 }
 
 /* ==========================================================
+   HEADER — скрытие при скролле
+   ========================================================== */
+/* Базовые стили шапки */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* Скрытая шапка — уезжает вверх при скролле вниз */
+.header--hidden {
+  transform: translateY(-100%);
+  box-shadow: none;
+}
+
+/* Учитываем админ-бар WordPress для шапки */
+.admin-bar .header {
+  top: 32px;
+}
+@media (max-width: 782px) {
+  .admin-bar .header {
+    top: 46px;
+  }
+}
+
+/* Обертка элементов (флексбокс-ряд для десктопа) */
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px; /* Фиксированная высота шапки */
+}
+
+/* Бургер (по умолчанию скрыт, виден только на мобильных) */
+.header__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 101; /* Поверх выезжающего меню */
+}
+
+.header__burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: var(--transition, 0.3s ease);
+}
+
+/* Анимация превращения бургера в крестик при открытии меню */
+.header__burger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.header__burger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.header__burger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- ДЕСКТОПНАЯ НАВИГАЦИЯ (Широкие экраны) --- */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav__list {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__list a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+/* --- МОБИЛЬНАЯ НАВИГАЦИЯ (Адаптив) --- */
+@media (max-width: 1150px) {
+  .header__burger {
+    display: flex; /* Показываем кнопку бургер-меню */
+  }
+
+  .nav {
+    position: fixed;
+    top: 64px; /* Ровно под шапкой */
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: min(320px, 85%);
+    background: #fff;
+    padding: 24px;
+    transform: translateX(100%);
+    transition: transform var(--transition, 0.3s ease);
+    box-shadow: -8px 0 24px rgba(0, 0, 0, 0.06);
+    flex-direction: column;
+    gap: 24px;
+    z-index: 99;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Сдвигаем мобильное меню вниз, если активен админ-бар WordPress */
+  .admin-bar .nav {
+    top: calc(64px + 32px);
+    height: calc(100vh - 64px - 32px);
+  }
+
+  @media (max-width: 782px) {
+    .admin-bar .nav {
+      top: calc(64px + 46px);
+      height: calc(100vh - 64px - 46px);
+    }
+  }
+
+  .nav.is-open {
+    transform: translateX(0);
+  }
+
+  html.nav-open::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+  }
+
+  .nav__list {
+    flex-direction: column; /* Ссылки меню выстраиваются вертикально */
+    gap: 18px;
+  }
+}
+
+/* Железная блокировка скролла страницы на смартфонах (вешается на тег <html>) */
+html.nav-open {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* ==========================================================
    HERO
    ========================================================== */
 .hero {

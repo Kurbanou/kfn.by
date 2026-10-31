@@ -224,3 +224,136 @@
   // Запуск: сначала HTML, потом CSS
   typeHTML();
 })();
+
+// ==========================================================
+// HEADER — скрытие при скролле вниз, появление при скролле вверх
+// ==========================================================
+(function () {
+  const header = document.querySelector(".header");
+  if (!header) return;
+
+  let lastScrollTop = 0;
+  let ticking = false;
+  const scrollThreshold = 100; // начинаем скрывать после 100px скролла
+
+  function updateHeader() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // В самом верху — всегда показываем
+    if (scrollTop < 10) {
+      header.classList.remove("header--hidden");
+      lastScrollTop = scrollTop;
+      ticking = false;
+      return;
+    }
+
+    // Если скроллим вниз и прошли порог — скрываем
+    if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+      header.classList.add("header--hidden");
+    } else {
+      // Скроллим вверх — показываем
+      header.classList.remove("header--hidden");
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    ticking = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!ticking) {
+        window.requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    },
+    { passive: true },
+  );
+})();
+
+// ==========================================================
+// BURGER — открытие/закрытие мобильного меню
+// ==========================================================
+(function () {
+  const burger = document.querySelector(".header__burger");
+  const nav = document.querySelector(".nav");
+  const header = document.querySelector(".header");
+  if (!burger || !nav) return;
+
+  // Функция закрытия меню
+  function closeMenu() {
+    nav.classList.remove("is-open");
+    burger.classList.remove("is-open");
+    burger.setAttribute("aria-expanded", "false");
+    burger.setAttribute("aria-label", "Открыть меню");
+    document.documentElement.classList.remove("nav-open");
+  }
+
+  // Переключение меню по клику на бургер
+  burger.addEventListener("click", function (e) {
+    e.stopPropagation(); // Чтобы клик не долетал до document
+    const isOpen = nav.classList.toggle("is-open");
+    burger.classList.toggle("is-open", isOpen);
+    burger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    burger.setAttribute("aria-label", isOpen ? "Закрыть меню" : "Открыть меню");
+
+    // Блокируем скролл на теге <html>
+    document.documentElement.classList.toggle("nav-open", isOpen);
+
+    // Если открыли меню, принудительно возвращаем скрытую шапку на экран
+    if (isOpen && header) {
+      header.classList.remove("header--hidden");
+    }
+  });
+
+  // Закрыть меню при клике на любую ссылку внутри (для якорей типа /#form)
+  nav.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", closeMenu);
+  });
+
+  // Закрыть меню при клике в любое место экрана за пределами меню
+  document.addEventListener("click", function (e) {
+    if (!nav.classList.contains("is-open")) return;
+
+    if (!nav.contains(e.target) && !burger.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  // --- Умное скрытие шапки при прокрутке страницы вниз ---
+  if (header) {
+    let lastScrollTop = 0;
+    const scrollThreshold = 10; // Порог в px, чтобы игнорировать микро-движения
+
+    window.addEventListener(
+      "scroll",
+      function () {
+        // Если мобильное меню открыто — не прячем шапку
+        if (nav.classList.contains("is-open")) return;
+
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+        // Игнорируем мелкую тряску скролла
+        if (Math.abs(lastScrollTop - scrollTop) <= scrollThreshold) return;
+
+        // В самом верху страницы всегда показываем шапку
+        if (scrollTop <= 0) {
+          header.classList.remove("header--hidden");
+          lastScrollTop = scrollTop;
+          return;
+        }
+
+        if (scrollTop > lastScrollTop) {
+          // Листаем вниз — скрываем
+          header.classList.add("header--hidden");
+        } else {
+          // Листаем вверх — мгновенно показываем
+          header.classList.remove("header--hidden");
+        }
+
+        lastScrollTop = scrollTop;
+      },
+      { passive: true },
+    ); // passive ускоряет работу скролла на мобильных
+  }
+})();
