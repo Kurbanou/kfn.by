@@ -45,12 +45,32 @@
         <div class="container">
             <p>© <?php echo esc_html(date_i18n('Y')); ?> <?php bloginfo('name'); ?>. Все права защищены.</p>
         </div>
+        <!-- Cookie Settings Link (в футере) -->
+        <p class="cookie-settings-link">
+            <a href="#" id="cookie-settings">Настройки cookie</a>
+        </p>
     </div>
 </footer>
 
 <?php // SVG-спрайт — см. пункт 9 
 ?>
 <?php get_template_part('template-parts/svg-sprite'); ?>
+
+<!-- Cookie Banner -->
+<div class="cookie-banner" id="cookie-banner" hidden>
+    <div class="cookie-banner__inner">
+        <p class="cookie-banner__text">
+            Мы используем файлы cookie для аналитики и улучшения работы сайта.
+            Подробнее — в <a href="/privacy-policy/" target="_blank" rel="noopener">политике конфиденциальности</a>.
+        </p>
+        <div class="cookie-banner__actions">
+            <button type="button" class="btn btn--primary btn--sm" id="cookie-accept">Принять</button>
+            <button type="button" class="btn btn--outline btn--sm" id="cookie-decline">Отклонить</button>
+        </div>
+    </div>
+</div>
+
+
 
 <?php wp_footer(); ?>
 </body>

@@ -357,3 +357,49 @@
     ); // passive ускоряет работу скролла на мобильных
   }
 })();
+
+// ==========================================================
+// COOKIE BANNER
+// ==========================================================
+(function () {
+  const banner = document.getElementById("cookie-banner");
+  const acceptBtn = document.getElementById("cookie-accept");
+  const declineBtn = document.getElementById("cookie-decline");
+  const settingsLink = document.getElementById("cookie-settings");
+
+  if (!banner) return;
+
+  // Проверяем, есть ли уже согласие
+  const consent = localStorage.getItem("cookie_consent");
+
+  if (!consent) {
+    banner.hidden = false;
+  }
+
+  // Принять
+  if (acceptBtn) {
+    acceptBtn.addEventListener("click", function () {
+      localStorage.setItem("cookie_consent", "accepted");
+      banner.hidden = true;
+      // Здесь можно загрузить скрипты аналитики (Метрика, GA)
+      // loadAnalytics();
+    });
+  }
+
+  // Отклонить
+  if (declineBtn) {
+    declineBtn.addEventListener("click", function () {
+      localStorage.setItem("cookie_consent", "declined");
+      banner.hidden = true;
+    });
+  }
+
+  // Настройки cookie (сброс)
+  if (settingsLink) {
+    settingsLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      localStorage.removeItem("cookie_consent");
+      banner.hidden = false;
+    });
+  }
+})();
