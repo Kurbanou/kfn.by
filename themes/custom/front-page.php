@@ -115,7 +115,7 @@ get_header();
 <!-- ================= УСЛУГИ ================= -->
 <section class="services section section--gray">
     <div class="container">
-        <h2 class="section__title">Услуги по разработке сайтов</h2>
+        <h2 class="section__title">Услуги по <span>разработке сайтов</span> </h2>
         <p class="section__subtitle">Полный цикл: от идеи до первых клиентов</p>
 
         <ul class="services__list">
@@ -150,7 +150,7 @@ get_header();
 <!-- ================= СТОИМОСТЬ ================= -->
 <section class="pricing section" id="pricing">
     <div class="container">
-        <h2 class="section__title">Стоимость разработки сайта</h2>
+        <h2 class="section__title"><span>Стоимость</span> разработки сайта</h2>
         <p class="section__subtitle">Прозрачные цены, работа по договору</p>
 
         <ul class="pricing__list">
@@ -196,7 +196,7 @@ get_header();
 <?php
 $portfolio_query = new WP_Query([
     'post_type'      => 'portfolio',
-    'posts_per_page' => 6,
+    'posts_per_page' => 3,
     'orderby'        => 'menu_order date',
     'order'          => 'DESC',
     'no_found_rows'  => true,
@@ -307,7 +307,7 @@ wp_reset_postdata();
 <!-- ================= ПРИНЦИПЫ РАБОТЫ ================= -->
 <section class="section section--gray">
     <div class="container">
-        <h2 class="section__title">Принципы работы</h2>
+        <h2 class="section__title"><span>Принципы</span> работы</h2>
         <p class="section__subtitle">Прозрачные условия — без сюрпризов</p>
 
         <ul class="features__list">
