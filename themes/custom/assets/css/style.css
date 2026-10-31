@@ -863,7 +863,7 @@ html.nav-open {
   background: #fff;
   border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 60px rgba(255, 255, 255, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -2685,6 +2685,36 @@ html.nav-open {
     font-size: 160px;
   }
   .error-404__title {
+    font-size: 40px;
+  }
+}
+
+/* Заголовок страницы — с отступами */
+.page-header {
+  padding: 48px 0 24px;
+  text-align: center;
+}
+
+.page-header .page-title {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* Заголовок страницы — в контейнере (для отступов) */
+.page-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width: 960px) {
+  .page-header {
+    padding: 64px 0 32px;
+  }
+  .page-header .page-title {
     font-size: 40px;
   }
 }

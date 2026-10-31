@@ -8,7 +8,7 @@ get_header();
 
 
 <?php while (have_posts()) : the_post(); ?>
-    <article class="page-content container section">
+    <article class="page-content  section">
         <header class="page-header">
             <h1 class="page-title"><?php the_title(); ?></h1>
         </header>
@@ -22,6 +22,9 @@ get_header();
 
 
 
+
+
 <?php
 wg_related_pages();
+get_template_part('template-parts/cta');
 get_footer();
