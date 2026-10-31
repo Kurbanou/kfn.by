@@ -86,7 +86,7 @@ get_header();
                     class="btn btn--primary btn--lg"
                     target="_blank"
                     rel="noopener nofollow">
-                    Открыть сайт →
+                    Смотреть сайт →
                 </a>
             </div>
         <?php endif; ?>

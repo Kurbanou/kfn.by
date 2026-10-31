@@ -11,6 +11,9 @@ get_header();
     <article class="page-content  ">
         <header class="page-header">
             <h1 class="page-title"><?php the_title(); ?></h1>
+            <?php if (has_excerpt()) : ?>
+                <p class="page-subtitle"><?php echo esc_html(get_the_excerpt()); ?></p>
+            <?php endif; ?>
         </header>
 
         <div class="entry-content">

@@ -119,3 +119,11 @@ add_shortcode('wg_cta', function () {
     get_template_part('template-parts/cta');
     return ob_get_clean();
 });
+
+
+/**
+ * Включаем Excerpt (краткое описание) для страниц
+ */
+add_action('init', function () {
+    add_post_type_support('page', 'excerpt');
+});

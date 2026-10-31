@@ -13,8 +13,8 @@
     <!-- ================= HEADER ================= -->
     <header class="header">
         <div class="container header__inner">
-           <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo" aria-label="<?php bloginfo('name'); ?> — на главную">
-                <svg class="header__logo-img"  aria-hidden="true">
+            <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo" aria-label="<?php bloginfo('name'); ?> — на главную">
+                <svg class="header__logo-img" aria-hidden="true">
                     <use href="#icon-logo"></use>
                 </svg>
             </a>
@@ -34,13 +34,13 @@
                     'depth'          => 1,
                 ]);
                 ?>
-                <a href="<?php echo esc_url( home_url( '/#form' ) ); ?>" class="btn btn--primary nav__cta">Получить КП</a>
+                <a href="<?php echo esc_url(home_url('/#form')); ?>" class="btn btn--primary nav__cta">Получить КП</a>
             </nav>
         </div>
     </header>
 
-    <main class="site-main">            
-        <?php if ( function_exists( 'rank_math_the_breadcrumbs' ) && ! is_front_page() ) : ?>
+    <main class="site-main">
+        <?php if (function_exists('rank_math_the_breadcrumbs') && ! is_front_page()) : ?>
             <div class="container">
                 <div class="breadcrumbs-wrapper">
                     <?php rank_math_the_breadcrumbs(); ?>

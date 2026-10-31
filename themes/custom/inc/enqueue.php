@@ -1,12 +1,14 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (! defined('ABSPATH')) exit;
 
-add_action( 'wp_enqueue_scripts', 'wg_assets' );
-function wg_assets() {
-    // Google Fonts
+add_action('wp_enqueue_scripts', 'wg_assets');
+function wg_assets()
+{
+
+    // Google Fonts (Inter + Space Grotesk)
     wp_enqueue_style(
         'wg-fonts',
-        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',
+        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap',
         [],
         null
     );
@@ -15,8 +17,8 @@ function wg_assets() {
     wp_enqueue_style(
         'wg-style',
         WG_URI . '/assets/css/style.css',
-        [ 'wg-fonts' ],
-        filemtime( WG_DIR . '/assets/css/style.css' )
+        ['wg-fonts'],
+        filemtime(WG_DIR . '/assets/css/style.css')
     );
 
     // JS (defer уже не нужен — WP сам ставит в footer)
@@ -24,17 +26,18 @@ function wg_assets() {
         'wg-main',
         WG_URI . '/assets/js/main.js',
         [],
-        filemtime( WG_DIR . '/assets/js/main.js' ),
+        filemtime(WG_DIR . '/assets/js/main.js'),
         true
     );
 }
 
 // Preconnect для шрифтов
-add_filter( 'wp_resource_hints', 'wg_resource_hints', 10, 2 );
-function wg_resource_hints( $urls, $relation_type ) {
-    if ( 'preconnect' === $relation_type ) {
-        $urls[] = [ 'href' => 'https://fonts.googleapis.com' ];
-        $urls[] = [ 'href' => 'https://fonts.gstatic.com', 'crossorigin' => 'anonymous' ];
+add_filter('wp_resource_hints', 'wg_resource_hints', 10, 2);
+function wg_resource_hints($urls, $relation_type)
+{
+    if ('preconnect' === $relation_type) {
+        $urls[] = ['href' => 'https://fonts.googleapis.com'];
+        $urls[] = ['href' => 'https://fonts.gstatic.com', 'crossorigin' => 'anonymous'];
     }
     return $urls;
 }
