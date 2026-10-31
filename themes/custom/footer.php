@@ -6,6 +6,8 @@
         <div class="footer__col">
             <a href="<?php echo esc_url(home_url('/')); ?>" class="footer__logo"><?php bloginfo('name'); ?></a>
             <p class="footer__text"><?php bloginfo('description'); ?></p>
+            <p><a class="footer__text" href="/privacy-policy/">Политика конфиденциальности</a></p>
+
         </div>
 
         <nav class="footer__col" aria-label="Навигация в футере">
@@ -22,12 +24,13 @@
             ?>
         </nav>
 
-            <div class="footer__col">
+        <div class="footer__col">
             <h3 class="footer__title">Контакты</h3>
             <address class="footer__address">
                 <p>г. Гродно · работаем по всей Беларуси</p>
                 <p><a href="tel:+375298885419">+375 29 888-54-19</a></p>
                 <p><a href="mailto:kurbanou.faridun@gmail.com">kurbanou.faridun@gmail.com</a></p>
+
             </address>
             <?php /* Ссылки на бизнес-профили — раскомментировать после создания
             <p class="footer__social">

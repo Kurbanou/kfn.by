@@ -928,6 +928,17 @@ html.nav-open {
   margin-top: 8px;
 }
 
+.form__note a {
+  font-size: 12px;
+  color: var(--color-accent);
+}
+
+.form__note a:hover {
+  font-size: 12px;
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
 /* Кнопка CF7 */
 .wpcf7-submit {
   padding: 16px 24px;
