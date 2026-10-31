@@ -221,6 +221,7 @@ p {
 }
 .nav.is-open {
   transform: translateX(0);
+  padding-bottom: 130px;
 }
 
 .nav__list {
@@ -366,19 +367,6 @@ p {
     height: calc(100vh - 64px);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-  }
-
-  /* Сдвигаем мобильное меню вниз, если активен админ-бар WordPress */
-  .admin-bar .nav {
-    top: calc(64px + 32px);
-    height: calc(100vh - 64px - 32px);
-  }
-
-  @media (max-width: 782px) {
-    .admin-bar .nav {
-      top: calc(64px + 46px);
-      height: calc(100vh - 64px - 46px);
-    }
   }
 
   .nav.is-open {
@@ -2852,7 +2840,7 @@ html.nav-open {
   color: var(--color-accent);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1150px) {
   .cookie-banner__inner {
     flex-direction: row;
     align-items: center;
