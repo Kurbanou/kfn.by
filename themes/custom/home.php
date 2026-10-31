@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Шаблон страницы записей (блог)
  *
@@ -12,20 +13,23 @@ get_header();
 
     <header class="page-header">
         <h1 class="page-title"><?php single_post_title(); ?></h1>
+
+        <p class="page-subtitle">Статьи о разработке сайтов, SEO-продвижении, WordPress и приложениях. Советы веб-студии из Гродно.</p>
+
     </header>
 
-    <?php if ( have_posts() ) : ?>
+    <?php if (have_posts()) : ?>
 
         <div class="posts-grid">
-            <?php while ( have_posts() ) : the_post(); ?>
+            <?php while (have_posts()) : the_post(); ?>
 
-                <article id="post-<?php the_ID(); ?>" <?php post_class( 'post-card' ); ?>>
+                <article id="post-<?php the_ID(); ?>" <?php post_class('post-card'); ?>>
 
                     <a href="<?php the_permalink(); ?>" class="post-card__link">
 
-                        <?php if ( has_post_thumbnail() ) : ?>
+                        <?php if (has_post_thumbnail()) : ?>
                             <div class="post-card__thumb">
-                                <?php the_post_thumbnail( 'medium_large', [ 'loading' => 'lazy' ] ); ?>
+                                <?php the_post_thumbnail('medium_large', ['loading' => 'lazy']); ?>
                             </div>
                         <?php else : ?>
                             <div class="post-card__thumb post-card__thumb--placeholder" aria-hidden="true"></div>
@@ -35,20 +39,20 @@ get_header();
 
                             <?php
                             $categories = get_the_category();
-                            if ( $categories ) :
-                                ?>
-                                <span class="post-card__category"><?php echo esc_html( $categories[0]->name ); ?></span>
+                            if ($categories) :
+                            ?>
+                                <span class="post-card__category"><?php echo esc_html($categories[0]->name); ?></span>
                             <?php endif; ?>
 
                             <h2 class="post-card__title"><?php the_title(); ?></h2>
 
                             <p class="post-card__excerpt">
-                                <?php echo esc_html( wp_trim_words( get_the_excerpt(), 20, '…' ) ); ?>
+                                <?php echo esc_html(wp_trim_words(get_the_excerpt(), 20, '…')); ?>
                             </p>
 
                             <div class="post-card__meta">
-                                <time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>">
-                                    <?php echo esc_html( get_the_date() ); ?>
+                                <time datetime="<?php echo esc_attr(get_the_date(DATE_W3C)); ?>">
+                                    <?php echo esc_html(get_the_date()); ?>
                                 </time>
                             </div>
 
@@ -63,12 +67,12 @@ get_header();
 
         <?php
         // Пагинация
-        the_posts_pagination( [
+        the_posts_pagination([
             'mid_size'  => 2,
             'prev_text' => '← Назад',
             'next_text' => 'Вперёд →',
             'class'     => 'pagination',
-        ] );
+        ]);
         ?>
 
     <?php else : ?>

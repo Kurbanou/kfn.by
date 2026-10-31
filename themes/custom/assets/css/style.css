@@ -2756,7 +2756,7 @@ html.nav-open {
 
 @media (min-width: 960px) {
   .page-header {
-    padding: 56px 0 32px;
+    padding: 20px 0 80px;
   }
   .page-header .page-title {
     font-size: 40px;
