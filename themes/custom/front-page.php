@@ -351,25 +351,8 @@ wp_reset_postdata();
     </div>
 </section>
 
-<!-- ================= ФОРМА ЗАЯВКИ ================= -->
-<section class="cta section" id="form">
-    <div class="container cta__inner">
-        <div class="cta__content">
-            <h2 class="cta__title">Обсудим ваш проект?</h2>
-            <p class="cta__text">
-                Оставьте заявку — перезвоним в течение 15 минут и бесплатно рассчитаем стоимость.
-            </p>
-            <ul class="cta__contacts">
-                <li><a href="tel:+375298885419">+375 29 888-54-19</a></li>
-                <li><a href="mailto:kurbanou.faridun@gmail.com">kurbanou.faridun@gmail.com</a></li>
-            </ul>
-        </div>
 
-        <?php // Форма — см. пункт 8 ниже 
-        ?>
-        <!-- <?php get_template_part('template-parts/form'); ?> -->
-        <?php echo do_shortcode('[contact-form-7 id="7101a05" title="Форма заявки (главная)"]'); ?>
-    </div>
-</section>
+<!-- ================= ФОРМА ЗАЯВКИ ================= -->
+<?php get_template_part('template-parts/cta'); ?>
 
 <?php get_footer(); ?>
