@@ -50,11 +50,11 @@ function wg_related_pages()
     $current = get_the_ID();
 
     $related = [
-        'services'  => ['ecommerce', 'landing', 'prices'],
-        'ecommerce' => ['portfolio', 'prices', 'contacts'],
-        'landing'   => ['portfolio', 'prices', 'contacts'],
-        'wordpress' => ['portfolio', 'prices', 'contacts'],
-        'tilda'     => ['portfolio', 'prices', 'contacts'],
+        'services'  => ['landing', 'wordpress', 'prices'],
+        'ecommerce' => ['landing', 'wordpress', 'portfolio'],
+        'landing'   => ['ecommerce', 'tilda', 'portfolio'],
+        'wordpress' => ['tilda', 'ecommerce', 'portfolio'],
+        'tilda'     => ['wordpress', 'landing', 'portfolio'],
         'prices'    => ['services', 'portfolio', 'contacts'],
         'about'     => ['services', 'portfolio', 'contacts'],
     ];

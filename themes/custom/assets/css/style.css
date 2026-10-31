@@ -1908,40 +1908,60 @@ html.nav-open {
 }
 
 /* ==========================================================
-   RELATED PAGES (перелинковка)
+   RELATED PAGES — «Смотрите также» (компактный)
    ========================================================== */
+.related-pages {
+  padding: 32px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.related-pages .section__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .related-pages__list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .related-pages__item a {
-  display: flex;
-  justify-content: space-between;
+  display: inline-flex;
   align-items: center;
-  padding: 16px 20px;
-  background: #fff;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  font-weight: 600;
-  font-size: 15px;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--color-bg-gray);
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
   color: var(--color-text);
+  text-decoration: none;
   transition: var(--transition);
 }
 
-.related-pages__item a:hover {
-  border-color: var(--color-accent);
+.related-pages__item a::after {
+  content: "→";
+  font-weight: 600;
   color: var(--color-accent);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
+  font-size: 14px;
+  transition: transform var(--transition);
 }
 
-@media (min-width: 640px) {
-  .related-pages__list {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.related-pages__item a:hover {
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--color-accent);
+}
+
+.related-pages__item a:hover::after {
+  transform: translateX(2px);
 }
 
 /* ==========================================================

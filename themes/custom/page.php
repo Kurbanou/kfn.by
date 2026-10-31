@@ -8,7 +8,7 @@ get_header();
 
 
 <?php while (have_posts()) : the_post(); ?>
-    <article class="page-content  section">
+    <article class="page-content  ">
         <header class="page-header">
             <h1 class="page-title"><?php the_title(); ?></h1>
         </header>
