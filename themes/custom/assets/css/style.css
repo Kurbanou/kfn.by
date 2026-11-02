@@ -221,7 +221,7 @@ p {
 }
 .nav.is-open {
   transform: translateX(0);
-  padding-bottom: 130px;
+  /* padding-bottom: 130px; */
 }
 
 .nav__list {
@@ -364,7 +364,8 @@ p {
     flex-direction: column;
     gap: 24px;
     z-index: 99;
-    height: calc(100vh - 64px);
+    /* height: calc(100vh - 64px); */
+    height: 80vh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -1294,6 +1295,10 @@ html.nav-open {
 /* ==========================================================
    SINGLE PORTFOLIO
    ========================================================== */
+
+.single-portfolio {
+  margin-bottom: 40px;
+}
 
 .single-portfolio__header {
   margin-bottom: 32px;

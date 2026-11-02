@@ -41,7 +41,7 @@ get_header();
     ]);
 
     if (! is_wp_error($types) && ! empty($types)) : ?>
-        <nav class="portfolio-filters" aria-label="Фильтр по типу работ">
+        <nav class="portfolio-filters container" aria-label="Фильтр по типу работ">
             <a href="<?php echo esc_url(get_permalink()); ?>"
                 class="portfolio-filters__item <?php echo $current_type === '' ? 'is-active' : ''; ?>">
                 Все работы
