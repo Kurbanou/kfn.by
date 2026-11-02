@@ -1296,7 +1296,7 @@ html.nav-open {
    SINGLE PORTFOLIO
    ========================================================== */
 
-.single-portfolio {
+.single-portfolio article {
   margin-bottom: 40px;
 }
 
