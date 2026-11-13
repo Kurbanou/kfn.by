@@ -222,6 +222,7 @@ p {
 .nav.is-open {
   transform: translateX(0);
   /* padding-bottom: 130px; */
+  
 }
 
 .nav__list {
@@ -1295,8 +1296,8 @@ html.nav-open {
 /* ==========================================================
    SINGLE PORTFOLIO
    ========================================================== */
-
-.single-portfolio article {
+   
+.single-portfolio article{
   margin-bottom: 40px;
 }
 

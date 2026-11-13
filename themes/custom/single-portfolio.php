@@ -9,7 +9,7 @@
 get_header();
 ?>
 
-<article class="single-portfolio container">
+<article class="single-portfolio container ">
 
     <?php while (have_posts()) : the_post(); ?>
 

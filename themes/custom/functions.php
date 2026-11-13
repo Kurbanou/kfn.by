@@ -127,3 +127,34 @@ add_shortcode('wg_cta', function () {
 add_action('init', function () {
     add_post_type_support('page', 'excerpt');
 });
+
+
+/**
+ * Яндекс.Метрика — цель «Отправка формы» (CF7)
+ */
+add_action( 'wp_footer', function() {
+    ?>
+    <script>
+    document.addEventListener( 'wpcf7mailsent', function( event ) {
+        if ( typeof ym !== 'undefined' ) {
+            ym( 114015042, 'reachGoal', 'form_sent' );
+        }
+    }, false );
+    </script>
+    <?php
+} );
+
+
+/**
+ * Добавляем aria-label к honeypot-полю CF7 (для доступности)
+ */
+add_filter( 'wpcf7_form_elements', function( $content ) {
+    // Добавляем aria-label и aria-hidden к honeypot-полю
+    $content = str_replace(
+        'class="cf7-honeypot-field"',
+        'class="cf7-honeypot-field" aria-hidden="true" aria-label="Не заполняйте это поле"',
+        $content
+    );
+    return $content;
+}, 20 );
+

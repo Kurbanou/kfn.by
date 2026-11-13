@@ -45,7 +45,7 @@ get_header();
                         <span class="window__dot window__dot--yellow"></span>
                         <span class="window__dot window__dot--green"></span>
                         <div class="browser__address">
-                            <span class="browser__url">localhost:8000</span>
+                            <span class="browser__url">https://kfn.by</span>
                         </div>
                     </div>
                     <div class="browser__viewport">
