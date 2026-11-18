@@ -13,6 +13,7 @@ get_header();
 <section class="hero">
     <div class="container hero__inner">
         <div class="hero__content">
+            <div class="section-label">● Веб-студия в Гродно</div>
             <h1 class="hero__title">Разработка сайтов в Гродно</h1>
             <p class="hero__subtitle">
                 Создаём сайты, которые приводят клиентов. Веб-студия полного цикла:
@@ -114,7 +115,10 @@ get_header();
 
 <!-- ================= УСЛУГИ ================= -->
 <section class="services section section--gray">
+    
+    
     <div class="container">
+        <div class="section-label">● Наши услуги</div>
         <h2 class="section__title">Услуги по <span>разработке сайтов</span> </h2>
         <p class="section__subtitle">Полный цикл: от идеи до первых клиентов</p>
 
@@ -150,6 +154,7 @@ get_header();
 <!-- ================= СТОИМОСТЬ ================= -->
 <section class="pricing section" id="pricing">
     <div class="container">
+        <div class="section-label">● Тарифы</div>
         <h2 class="section__title"><span>Стоимость</span> разработки сайта</h2>
         <p class="section__subtitle">Прозрачные цены, работа по договору</p>
 
@@ -205,8 +210,9 @@ $portfolio_query = new WP_Query([
 if ($portfolio_query->have_posts()) : ?>
     <section class="portfolio section section--gray">
         <div class="container">
-            <h2 class="section__title">Наши работы</h2>
-            <p class="section__subtitle">Примеры сайтов, которые уже приносят клиентов</p>
+            <div class="section-label">● Наши работы</div>
+            <h2 class="section__title">Примеры сайтов, которые уже приносят клиентов</h2>
+            
 
             <ul class="portfolio__list">
                 <?php while ($portfolio_query->have_posts()) : $portfolio_query->the_post(); ?>
@@ -266,6 +272,7 @@ wp_reset_postdata();
 <!-- ================= ПРОЦЕСС РАБОТЫ ================= -->
 <section class="process section">
     <div class="container">
+        <div class="section-label">● Процесс</div>
         <h2 class="section__title">Как мы работаем</h2>
         <p class="section__subtitle">6 шагов от идеи до запуска</p>
 
@@ -307,7 +314,8 @@ wp_reset_postdata();
 <!-- ================= ПРИНЦИПЫ РАБОТЫ ================= -->
 <section class="section section--gray">
     <div class="container">
-        <h2 class="section__title"><span>Принципы</span> работы</h2>
+        <div class="section-label">● Принципы</div>
+        <h2 class="section__title"><span>Наши принципы</span> работы</h2>
         <p class="section__subtitle">Прозрачные условия — без сюрпризов</p>
 
         <ul class="features__list">

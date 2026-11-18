@@ -10,6 +10,7 @@
 <section class="cta section" id="form">
     <div class="container cta__inner">
         <div class="cta__content">
+            <div class="section-label">● Свяжитесь с нами</div>
             <h2 class="section__title cta__title">Обсудим ваш <span>проект?</span> </h2>
             <p class="cta__text">
                 Оставьте заявку — перезвоним в течение 15 минут и бесплатно рассчитаем стоимость.

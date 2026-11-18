@@ -74,3 +74,17 @@ startProject/
 
 - 📺 **Видео-курс по разработке проекта:** [Смотреть первую часть на YouTube](https://www.youtube.com/watch?v=c8nob2rQ9To)
 - 🛠 **FSE Генератор тем:** [Block Theme Generator](https://fullsiteediting.com/block-theme-generator/)
+
+```sql
+UPDATE wp_options SET option_value = replace(option_value, 'https://kfn.by', 'http://localhost:8000') WHERE option_name = 'home' OR option_name = 'siteurl';
+
+UPDATE wp_posts SET guid = replace(guid, 'https://kfn.by', 'http://localhost:8000');
+
+UPDATE wp_posts SET post_content = replace(post_content, 'https://kfn.by', 'http://localhost:8000');
+
+UPDATE wp_postmeta SET meta_value = replace(meta_value, 'https://kfn.by', 'http://localhost:8000');
+
+UPDATE wp_comments SET comment_content = replace(comment_content, 'https://kfn.by', 'http://localhost:8000');
+
+UPDATE wp_comments SET comment_author_url = replace(comment_author_url, 'https://kfn.by', 'http://localhost:8000');
+```
