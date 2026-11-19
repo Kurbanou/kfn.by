@@ -23,6 +23,13 @@
                 <span></span><span></span><span></span>
             </button>
 
+            <button class="theme-toggle" id="theme-toggle" aria-label="Сменить тему" style="background: none; border: none; cursor: pointer; color: var(--color-text); display: flex; align-items: center; justify-content: center; padding: 8px; border-radius: 8px; margin-right: 10px;">
+                <!-- Иконка солнца/луны будет меняться через JS -->
+                <svg id="theme-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+
             <nav class="header__nav nav" aria-label="Основная навигация">
                 <?php
                 wp_nav_menu([

@@ -41,6 +41,56 @@
   --transition: 0.25s ease;
 }
 
+/* Светлая тема */
+[data-theme="light"] {
+  --color-bg: #ffffff;
+  --color-bg-gray: #f5f7fa;
+  --color-bg-card: #ffffff;
+  --color-bg-elevated: #f5f7fa;
+
+  --color-text: #1a1a1a;
+  --color-text-muted: #5b6472;
+
+  --color-border: #e5e9f0;
+  --color-border-glow: rgba(37, 99, 235, 0.5);
+
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+  --color-accent-2: #7c3aed;
+
+  /* Свечение в светлой теме делаем мягче */
+  --glow-blue: 0 4px 12px rgba(37, 99, 235, 0.15);
+  --glow-purple: 0 4px 12px rgba(124, 58, 237, 0.1);
+  --glow-strong: 0 8px 24px rgba(37, 99, 235, 0.25);
+
+  --shadow-sm: 0 2px 8px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 8px 24px rgba(16, 24, 40, 0.08);
+}
+
+/* Убираем тёмный градиент с body для светлой темы */
+[data-theme="light"] body {
+  background-image: none;
+  background-color: var(--color-bg);
+}
+
+/* Также для светлой темы вернем белый фон окнам браузера и формам */
+[data-theme="light"] .window--browser,
+[data-theme="light"] .window--browser .window__viewport,
+[data-theme="light"] .browser__address {
+  background: #fff;
+  color: #1a1a1a;
+}
+[data-theme="light"] .form__input {
+  background: #fafbfc;
+  color: #1a1a1a;
+}
+[data-theme="light"] .header {
+  background: rgba(255, 255, 255, 0.92);
+}
+[data-theme="light"] .header__burger span {
+  background: #1a1a1a;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 64px;
@@ -2544,4 +2594,266 @@ FOOTER & COOKIE BANNER
   font-weight: 500;
 
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.12);
+}
+
+/* ==========================================================
+   ФИКСЫ ДЛЯ СВЕТЛОЙ ТЕМЫ (HERO / IDE)
+   ========================================================== */
+[data-theme="light"] .window {
+  background: #ffffff;
+  border: 1px solid #e5e9f0;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); /* Мягкая тень */
+}
+
+[data-theme="light"] .window__bar {
+  background: #f5f7fa;
+  border-bottom: 1px solid #e5e9f0;
+}
+
+/* Текст в шапке окна (console.js) */
+[data-theme="light"] .window__title {
+  color: #5b6472;
+}
+
+/* Код внутри IDE */
+[data-theme="light"] .ide__code {
+  color: #1a1a1a; /* Тёмный текст для читаемости */
+  background: #ffffff;
+}
+
+/* Подсветка синтаксиса для светлой темы (чтобы было красиво) */
+[data-theme="light"] .tok-selector {
+  color: #d946ef;
+} /* Розовый */
+[data-theme="light"] .tok-prop {
+  color: #2563eb;
+} /* Синий */
+[data-theme="light"] .tok-value {
+  color: #16a34a;
+} /* Зеленый */
+[data-theme="light"] .tok-brace {
+  color: #7c3aed;
+} /* Фиолетовый */
+[data-theme="light"] .tok-punct {
+  color: #64748b;
+} /* Серый */
+
+/* Скроллбар в IDE */
+[data-theme="light"] .ide__code::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+/* Правое окно (Браузер) */
+[data-theme="light"] .window--browser .window__bar {
+  background: #f5f7fa;
+}
+
+[data-theme="light"] .browser__address {
+  background: #ffffff;
+  border: 1px solid #e5e9f0;
+  color: #1a1a1a;
+}
+
+[data-theme="light"] .browser__viewport {
+  background: #ffffff;
+}
+
+[data-theme="light"] .browser__title {
+  color: #1a1a1a;
+}
+
+/* Кнопка "Перезапустить" в браузере */
+[data-theme="light"] .browser__restart {
+  background: rgba(37, 99, 235, 0.08);
+  border-color: rgba(37, 99, 235, 0.2);
+  color: #2563eb;
+}
+[data-theme="light"] .browser__restart.is-visible:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+/* Точки (светофор) — делаем их чуть ярче, чтобы не сливались с белым */
+[data-theme="light"] .window__dot--red {
+  background: #ff5f56;
+}
+[data-theme="light"] .window__dot--yellow {
+  background: #ffbd2e;
+}
+[data-theme="light"] .window__dot--green {
+  background: #27c93f;
+}
+
+/* ==========================================================
+   ФИКСЫ ДЛЯ СВЕТЛОЙ ТЕМЫ (КАРТОЧКИ УСЛУГ)
+   ========================================================== */
+
+/* Фон самой карточки */
+[data-theme="light"] .card {
+  background: #ffffff;
+  border: 1px solid #e5e9f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Шапка мокапа (где точки) */
+[data-theme="light"] .card__image .window__bar {
+  background: #f5f7fa; /* Светло-серый, как в макетах */
+  border-bottom: 1px solid #e5e9f0;
+}
+
+/* Если у тебя рамка мокапа задана через .mockup-browser, то красим её фон */
+[data-theme="light"] .mockup-browser {
+  background: #ffffff;
+  border-color: #e5e9f0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05); /* Мягкая тень */
+}
+
+/* Фон под картинкой (заглушка) */
+[data-theme="light"] .card__image {
+  background: #f5f7fa;
+}
+
+/* Красивое наведение на карточку в светлой теме */
+[data-theme="light"] .card:hover {
+  border-color: #2563eb; /* Синий акцент */
+  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.12); /* Синяя мягкая тень */
+  transform: translateY(-4px);
+}
+
+/* Текст внутри карточки */
+[data-theme="light"] .card__title {
+  color: #1a1a1a;
+}
+
+[data-theme="light"] .card__text {
+  color: #5b6472;
+}
+
+/* Цена (градиент оставляем, он хорошо смотрится на белом) */
+[data-theme="light"] .card__price {
+  /* Если градиент кажется бледным на белом, можно сделать его темнее */
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 18px rgba(37, 99, 235, 0.2)); /* Тень мягче */
+}
+
+[data-theme="light"] .card__link {
+  color: #2563eb;
+}
+[data-theme="light"] .card__link:hover {
+  color: #1d4ed8;
+}
+
+/* ==========================================================
+   СВЕТЛАЯ ТЕМА ДЛЯ CTA (ФОРМА ЗАЯВКИ)
+   ========================================================== */
+[data-theme="light"] .cta {
+  background: var(--color-bg-gray); /* Светло-серый фон вместо тёмного */
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+[data-theme="light"] .cta__title {
+  color: var(--color-text); /* Чёрный заголовок */
+}
+
+[data-theme="light"] .cta__text {
+  color: var(--color-text-muted); /* Серый текст */
+}
+
+[data-theme="light"] .cta__benefits li {
+  color: var(--color-text); /* Тёмный текст преимуществ */
+}
+
+[data-theme="light"] .cta__benefits li::before {
+  color: var(--color-accent); /* Синяя галочка */
+}
+
+[data-theme="light"] .cta__contacts {
+  border-top: 1px solid var(--color-border);
+}
+
+[data-theme="light"] .cta__contacts a {
+  color: var(--color-accent); /* Синие ссылки */
+}
+
+[data-theme="light"] .cta__contacts a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* Сама форма (Contact Form 7) */
+[data-theme="light"] .wpcf7 {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Мягкая тень */
+}
+
+[data-theme="light"] .form__label {
+  color: var(--color-text);
+}
+
+[data-theme="light"] .form__input {
+  background: #fafbfc;
+  color: var(--color-text);
+  border: 1.5px solid var(--color-border);
+}
+
+[data-theme="light"] .form__input:focus {
+  background: #ffffff;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+[data-theme="light"] .wpcf7-submit {
+  background: var(--color-accent); /* Синяя кнопка */
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+[data-theme="light"] .form__note {
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================
+   СВЕТЛАЯ ТЕМА ДЛЯ ФУТЕРА
+   ========================================================== */
+[data-theme="light"] .footer {
+  background: #ffffff; /* Белый футер */
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted); /* Серый текст */
+}
+
+[data-theme="light"] .footer__logo {
+  color: var(--color-text); /* Чёрный логотип */
+}
+
+[data-theme="light"] .footer__title {
+  color: var(--color-text); /* Чёрные заголовки колонок */
+}
+
+[data-theme="light"] .footer__list a,
+[data-theme="light"] .footer__address a,
+[data-theme="light"] .footer__social a {
+  color: var(--color-text-muted);
+  transition: var(--transition);
+}
+
+[data-theme="light"] .footer__list a:hover,
+[data-theme="light"] .footer__address a:hover,
+[data-theme="light"] .footer__social a:hover {
+  color: var(--color-accent); /* Синий при наведении */
+}
+
+[data-theme="light"] .footer__bottom {
+  border-top: 1px solid var(--color-border);
+  color: #94a3b8;
+}
+
+[data-theme="light"] .cookie-settings-link a {
+  color: var(--color-text-muted);
+}
+[data-theme="light"] .cookie-settings-link a:hover {
+  color: var(--color-accent);
 }

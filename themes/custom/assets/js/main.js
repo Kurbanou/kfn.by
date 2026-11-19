@@ -403,3 +403,50 @@
     });
   }
 })();
+
+// Переключение темы
+
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleBtn = document.getElementById("theme-toggle");
+  const themeIcon = document.getElementById("theme-icon");
+  const html = document.documentElement;
+
+  // 1. Проверяем сохраненную тему в localStorage или системные настройки
+  const savedTheme = localStorage.getItem("theme");
+  const systemPrefersDark = window.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
+
+  // Если тема сохранена — ставим её. Если нет — ставим тёмную (по умолчанию)
+  if (savedTheme) {
+    html.setAttribute("data-theme", savedTheme);
+    updateIcon(savedTheme);
+  } else {
+    // У тебя сейчас по умолчанию тёмная, поэтому ставим её
+    html.setAttribute("data-theme", "dark");
+    updateIcon("dark");
+  }
+
+  // 2. Обработчик клика
+  toggleBtn.addEventListener("click", function () {
+    const currentTheme = html.getAttribute("data-theme");
+    const newTheme = currentTheme === "light" ? "dark" : "light";
+
+    html.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme); // Сохраняем выбор
+    updateIcon(newTheme);
+  });
+
+  // 3. Функция смены иконки
+  function updateIcon(theme) {
+    if (theme === "light") {
+      // Иконка солнца
+      themeIcon.innerHTML =
+        '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+    } else {
+      // Иконка луны
+      themeIcon.innerHTML =
+        '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+    }
+  }
+});
