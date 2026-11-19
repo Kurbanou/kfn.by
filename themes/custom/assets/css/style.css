@@ -1,5 +1,5 @@
 /* ==========================================================
-   RESET & BASE
+   1. RESET & BASE
    ========================================================== */
 *,
 *::before,
@@ -8,30 +8,21 @@
 }
 
 :root {
-  /* фон */
+  /* ТЁМНАЯ ТЕМА (по умолчанию) */
   --color-bg: #0b0f1a;
   --color-bg-gray: #111827;
   --color-bg-card: #151b2b;
   --color-bg-elevated: #1a2233;
-
-  /* текст */
   --color-text: #e8edf7;
   --color-text-muted: #94a3b8;
-
-  /* границы */
   --color-border: #232c40;
   --color-border-glow: rgba(59, 130, 246, 0.55);
-
-  /* акценты */
   --color-accent: #3b82f6;
   --color-accent-hover: #60a5fa;
   --color-accent-2: #8b5cf6;
-
-  /* свечение */
   --glow-blue: 0 0 24px rgba(59, 130, 246, 0.35);
   --glow-purple: 0 0 32px rgba(139, 92, 246, 0.3);
   --glow-strong: 0 0 40px rgba(59, 130, 246, 0.45);
-
   --radius: 12px;
   --radius-sm: 8px;
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
@@ -41,54 +32,24 @@
   --transition: 0.25s ease;
 }
 
-/* Светлая тема */
+/* СВЕТЛАЯ ТЕМА (переопределение переменных) */
 [data-theme="light"] {
   --color-bg: #ffffff;
   --color-bg-gray: #f5f7fa;
   --color-bg-card: #ffffff;
   --color-bg-elevated: #f5f7fa;
-
   --color-text: #1a1a1a;
   --color-text-muted: #5b6472;
-
   --color-border: #e5e9f0;
   --color-border-glow: rgba(37, 99, 235, 0.5);
-
   --color-accent: #2563eb;
   --color-accent-hover: #1d4ed8;
   --color-accent-2: #7c3aed;
-
-  /* Свечение в светлой теме делаем мягче */
   --glow-blue: 0 4px 12px rgba(37, 99, 235, 0.15);
   --glow-purple: 0 4px 12px rgba(124, 58, 237, 0.1);
   --glow-strong: 0 8px 24px rgba(37, 99, 235, 0.25);
-
   --shadow-sm: 0 2px 8px rgba(16, 24, 40, 0.06);
   --shadow-md: 0 8px 24px rgba(16, 24, 40, 0.08);
-}
-
-/* Убираем тёмный градиент с body для светлой темы */
-[data-theme="light"] body {
-  background-image: none;
-  background-color: var(--color-bg);
-}
-
-/* Также для светлой темы вернем белый фон окнам браузера и формам */
-[data-theme="light"] .window--browser,
-[data-theme="light"] .window--browser .window__viewport,
-[data-theme="light"] .browser__address {
-  background: #fff;
-  color: #1a1a1a;
-}
-[data-theme="light"] .form__input {
-  background: #fafbfc;
-  color: #1a1a1a;
-}
-[data-theme="light"] .header {
-  background: rgba(255, 255, 255, 0.92);
-}
-[data-theme="light"] .header__burger span {
-  background: #1a1a1a;
 }
 
 html {
@@ -127,24 +88,27 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Убираем градиент с body для светлой темы */
+[data-theme="light"] body {
+  background-image: none;
+  background-color: var(--color-bg);
+}
+
 img,
 svg {
   display: block;
   max-width: 100%;
 }
-
 a {
   color: inherit;
   text-decoration: none;
 }
-
 ul,
 ol {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
 h1,
 h2,
 h3,
@@ -177,7 +141,7 @@ p {
 }
 
 /* ==========================================================
-   LAYOUT & SECTIONS
+   2. LAYOUT & SECTIONS
    ========================================================== */
 .container {
   width: 100%;
@@ -189,7 +153,6 @@ p {
 .section {
   padding: 56px 0;
 }
-
 .section--gray,
 .page-content .section:nth-child(odd) {
   background: var(--color-bg-gray);
@@ -203,7 +166,8 @@ p {
   margin-bottom: 12px;
 }
 
-.section__title span {
+.section__title span,
+.faq-header__title span {
   background: linear-gradient(135deg, #60a5fa, #a78bfa, #c084fc);
   -webkit-background-clip: text;
   background-clip: text;
@@ -218,8 +182,22 @@ p {
   max-width: 640px;
 }
 
-.page-content .section ul li strong {
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.1);
+  color: #60a5fa;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.12);
+}
+[data-theme="light"] .section-label {
   color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 @media (min-width: 640px) {
@@ -230,7 +208,6 @@ p {
     font-size: 32px;
   }
 }
-
 @media (min-width: 960px) {
   .section {
     padding: 96px 0;
@@ -241,7 +218,7 @@ p {
 }
 
 /* ==========================================================
-   BUTTONS
+   3. BUTTONS
    ========================================================== */
 .btn {
   display: inline-flex;
@@ -265,19 +242,9 @@ p {
   color: #fff;
   box-shadow: var(--glow-blue);
 }
-
 .btn--primary:hover {
   box-shadow: var(--glow-strong);
   transform: translateY(-2px);
-}
-
-.page-content .section .btn--primary {
-  box-shadow: var(--glow-blue);
-}
-
-.page-content .section .btn--primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--glow-strong);
 }
 
 .btn--outline {
@@ -285,29 +252,29 @@ p {
   color: var(--color-text);
   border-color: var(--color-border);
 }
-
 .btn--outline:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.25);
+}
+[data-theme="light"] .btn--outline:hover {
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
 }
 
 .btn--sm {
   padding: 10px 20px;
   font-size: 14px;
 }
-
 .btn--lg {
   padding: 16px 28px;
   font-size: 16px;
 }
-
 .btn--full {
   width: 100%;
 }
 
 /* ==========================================================
-   HEADER & NAVIGATION
+   4. HEADER & NAVIGATION
    ========================================================== */
 .header {
   position: sticky;
@@ -320,18 +287,19 @@ p {
     transform 0.35s ease,
     box-shadow 0.35s ease;
 }
+[data-theme="light"] .header {
+  background: rgba(255, 255, 255, 0.92);
+}
 
 .header:not(.header--hidden) {
   box-shadow:
     0 1px 0 var(--color-border),
     0 8px 30px rgba(59, 130, 246, 0.06);
 }
-
 .header--hidden {
   transform: translateY(-100%);
   box-shadow: none;
 }
-
 .admin-bar .header {
   top: 32px;
 }
@@ -342,14 +310,12 @@ p {
   justify-content: space-between;
   height: 64px;
 }
-
 .header__logo {
   display: flex;
   align-items: center;
   flex-shrink: 0;
   text-decoration: none;
 }
-
 .header__logo-img {
   height: 48px;
   width: 60px;
@@ -370,24 +336,24 @@ p {
   padding: 0;
   z-index: 101;
 }
-
 .header__burger span {
   display: block;
   width: 22px;
   height: 2px;
   background: var(--color-text);
   border-radius: 2px;
-  transition: var(--transition, 0.3s ease);
+  transition: var(--transition);
+}
+[data-theme="light"] .header__burger span {
+  background: #1a1a1a;
 }
 
 .header__burger.is-open span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
-
 .header__burger.is-open span:nth-child(2) {
   opacity: 0;
 }
-
 .header__burger.is-open span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
@@ -397,7 +363,6 @@ p {
   align-items: center;
   gap: 16px;
 }
-
 .nav__list {
   display: flex;
   gap: 2px;
@@ -416,12 +381,10 @@ p {
   border-radius: var(--radius-sm);
   transition: var(--transition);
 }
-
 .nav__link:hover {
   color: var(--color-accent);
   background: var(--color-bg-gray);
 }
-
 .nav__cta {
   width: 100%;
 }
@@ -436,7 +399,6 @@ p {
   .header__burger {
     display: flex;
   }
-
   .nav {
     position: fixed;
     top: 64px;
@@ -448,7 +410,7 @@ p {
     background: var(--color-bg-elevated);
     padding: 24px;
     transform: translateX(100%);
-    transition: transform var(--transition, 0.3s ease);
+    transition: transform var(--transition);
     box-shadow: -8px 0 24px rgba(0, 0, 0, 0.6);
     flex-direction: column;
     align-items: stretch;
@@ -458,11 +420,9 @@ p {
     -webkit-overflow-scrolling: touch;
     border-left: 1px solid var(--color-border);
   }
-
   .nav.is-open {
     transform: translateX(0);
   }
-
   html.nav-open::before {
     content: "";
     position: fixed;
@@ -470,52 +430,44 @@ p {
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 1;
   }
-
   .nav__list {
     flex-direction: column;
     gap: 18px;
   }
-
   .nav__link {
     padding: 8px;
   }
 }
 
 /* ==========================================================
-   BREADCRUMBS & PAGE HEADERS
+   5. BREADCRUMBS & PAGE HEADERS
    ========================================================== */
 .breadcrumbs-wrapper {
   max-width: var(--container);
   margin: 0 auto;
   padding: 20px var(--gutter) 0;
 }
-
 .rank-math-breadcrumb {
   font-size: 14px;
   line-height: 1.5;
   color: var(--color-text-muted);
 }
-
 .rank-math-breadcrumb p {
   margin: 0;
 }
-
 .rank-math-breadcrumb a {
   color: var(--color-text-muted);
   text-decoration: none;
   transition: var(--transition);
 }
-
 .rank-math-breadcrumb a:hover {
   color: var(--color-accent);
   text-decoration: underline;
 }
-
 .rank-math-breadcrumb .separator {
   margin: 0 8px;
   color: var(--color-border);
 }
-
 .rank-math-breadcrumb .last {
   color: var(--color-text);
   font-weight: 600;
@@ -527,7 +479,6 @@ p {
   margin: 0 auto;
   padding: 40px var(--gutter) 24px;
 }
-
 .page-header .page-title,
 .post-title {
   font-family: "Space Grotesk", "Inter", sans-serif;
@@ -543,7 +494,6 @@ p {
   filter: drop-shadow(0 0 18px rgba(96, 165, 250, 0.35));
   display: inline-block;
 }
-
 .page-subtitle {
   font-size: 14px;
   color: var(--color-text-muted);
@@ -556,7 +506,6 @@ p {
     padding: 24px var(--gutter) 0;
   }
 }
-
 @media (min-width: 960px) {
   .breadcrumbs-wrapper {
     padding: 32px var(--gutter) 0;
@@ -570,18 +519,16 @@ p {
 }
 
 /* ==========================================================
-   HERO & IDE DEMO
+   6. HERO & IDE DEMO
    ========================================================== */
 .hero {
   padding: 48px 0 64px;
   background: transparent;
 }
-
 .hero__inner {
   display: grid;
   gap: 40px;
 }
-
 .hero__title {
   font-size: 32px;
   font-weight: 700;
@@ -589,20 +536,17 @@ p {
   letter-spacing: -0.02em;
   margin-bottom: 16px;
 }
-
 .hero__subtitle {
   font-size: 17px;
   color: var(--color-text-muted);
   max-width: 520px;
   margin-bottom: 28px;
 }
-
 .hero__actions {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-
 .hero__screen {
   width: 100%;
   height: auto;
@@ -631,6 +575,11 @@ p {
   border: 1px solid var(--color-border);
   height: 400px;
 }
+[data-theme="light"] .window {
+  background: #ffffff;
+  border: 1px solid #e5e9f0;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
 
 .window__bar {
   display: flex;
@@ -641,23 +590,33 @@ p {
   border-bottom: 1px solid #313244;
   flex-shrink: 0;
 }
+[data-theme="light"] .window__bar {
+  background: #f5f7fa;
+  border-bottom: 1px solid #e5e9f0;
+}
 
 .window__dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
 }
-
 .window__dot--red {
   background: #f38ba8;
 }
-
 .window__dot--yellow {
   background: #f9e2af;
 }
-
 .window__dot--green {
   background: #a6e3a1;
+}
+[data-theme="light"] .window__dot--red {
+  background: #ff5f56;
+}
+[data-theme="light"] .window__dot--yellow {
+  background: #ffbd2e;
+}
+[data-theme="light"] .window__dot--green {
+  background: #27c93f;
 }
 
 .window__title {
@@ -666,6 +625,10 @@ p {
   color: #6c7086;
   font-family: "SF Mono", Consolas, monospace;
 }
+[data-theme="light"] .window__title {
+  color: #5b6472;
+}
+
 .ide__code {
   flex: 1;
   padding: 16px 20px;
@@ -677,6 +640,10 @@ p {
   white-space: pre-wrap;
   word-break: break-word;
 }
+[data-theme="light"] .ide__code {
+  color: #1a1a1a;
+  background: #ffffff;
+}
 .ide__code::-webkit-scrollbar {
   width: 8px;
 }
@@ -684,6 +651,10 @@ p {
   background: #313244;
   border-radius: 4px;
 }
+[data-theme="light"] .ide__code::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
 .tok-selector {
   color: #f38ba8;
 }
@@ -699,13 +670,36 @@ p {
 .tok-punct {
   color: #6c7086;
 }
+[data-theme="light"] .tok-selector {
+  color: #d946ef;
+}
+[data-theme="light"] .tok-prop {
+  color: #2563eb;
+}
+[data-theme="light"] .tok-value {
+  color: #16a34a;
+}
+[data-theme="light"] .tok-brace {
+  color: #7c3aed;
+}
+[data-theme="light"] .tok-punct {
+  color: #64748b;
+}
+
 .window--browser {
   background: var(--color-bg-card);
+}
+[data-theme="light"] .window--browser {
+  background: #fff;
 }
 .window--browser .window__bar {
   background: var(--color-bg-elevated);
   border-bottom: 1px solid var(--color-border);
 }
+[data-theme="light"] .window--browser .window__bar {
+  background: #f5f7fa;
+}
+
 .browser__address {
   flex: 1;
   margin-left: 12px;
@@ -717,12 +711,19 @@ p {
   color: var(--color-text-muted);
   font-family: "SF Mono", Consolas, monospace;
 }
+[data-theme="light"] .browser__address {
+  background: #ffffff;
+  border: 1px solid #e5e9f0;
+  color: #1a1a1a;
+}
+
 .browser__url {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .browser__viewport {
   position: relative;
   flex: 1;
@@ -735,6 +736,10 @@ p {
   flex-direction: column;
   gap: 16px;
 }
+[data-theme="light"] .browser__viewport {
+  background: #ffffff;
+}
+
 .browser__title {
   font-family: "Inter", sans-serif;
   font-size: 24px;
@@ -750,6 +755,10 @@ p {
     font-weight 0.3s ease,
     letter-spacing 0.3s ease;
 }
+[data-theme="light"] .browser__title {
+  color: #1a1a1a;
+}
+
 .browser__restart {
   position: absolute;
   bottom: 16px;
@@ -773,6 +782,11 @@ p {
     transform 0.5s ease;
   transition-delay: 0.8s;
 }
+[data-theme="light"] .browser__restart {
+  background: rgba(37, 99, 235, 0.08);
+  border-color: rgba(37, 99, 235, 0.2);
+  color: #2563eb;
+}
 .browser__restart.is-visible {
   opacity: 1;
   transform: translateY(0);
@@ -784,6 +798,10 @@ p {
   transform: translateY(0) rotate(180deg);
   transition-delay: 0s;
 }
+[data-theme="light"] .browser__restart.is-visible:hover {
+  background: #2563eb;
+}
+
 @media (min-width: 640px) {
   .hero__actions {
     flex-direction: row;
@@ -828,9 +846,10 @@ p {
     font-size: 58px;
   }
 }
+
 /* ==========================================================
-FEATURES
-========================================================== */
+   7. FEATURES
+   ========================================================== */
 .features__list {
   display: grid;
   gap: 16px;
@@ -869,6 +888,7 @@ FEATURES
   font-size: 14px;
   color: var(--color-text-muted);
 }
+
 @media (min-width: 640px) {
   .features__list {
     grid-template-columns: repeat(2, 1fr);
@@ -879,19 +899,16 @@ FEATURES
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
 /* ==========================================================
-SERVICES (CARDS)
-========================================================== */
-/* ==========================================================
-   SERVICES (CARDS)
+   8. SERVICES (CARDS)
    ========================================================== */
 .services__list {
   display: grid;
-  gap: 24px; /* Отступ между карточками */
-  grid-template-columns: 1fr; /* 1 колонка на мобильных */
+  gap: 24px;
+  grid-template-columns: 1fr;
 }
 
-/* Карточка */
 .services .card {
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
@@ -901,16 +918,23 @@ SERVICES (CARDS)
   flex-direction: column;
   transition: var(--transition);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  padding: 0; /* Убираем паддинг, он будет у текста */
+  padding: 0;
 }
-
+[data-theme="light"] .services .card {
+  background: #ffffff;
+  border: 1px solid #e5e9f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
 .services .card:hover {
   border-color: var(--color-border-glow);
   box-shadow: var(--glow-blue);
   transform: translateY(-4px);
 }
+[data-theme="light"] .services .card:hover {
+  border-color: #2563eb;
+  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.12);
+}
 
-/* Картинка */
 .services .card__image {
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -918,7 +942,9 @@ SERVICES (CARDS)
   background: #1e2a45;
   position: relative;
 }
-
+[data-theme="light"] .services .card__image {
+  background: #f5f7fa;
+}
 .services .card__image img {
   width: 100%;
   height: 100%;
@@ -927,12 +953,10 @@ SERVICES (CARDS)
   display: block;
   transition: transform 0.4s ease;
 }
-
 .services .card:hover .card__image img {
   transform: scale(1.05);
 }
 
-/* Текст внутри карточки */
 .services .card__title,
 .services .card__text,
 .services .card__price,
@@ -940,7 +964,6 @@ SERVICES (CARDS)
   margin-left: 24px;
   margin-right: 24px;
 }
-
 .services .card__title {
   font-size: 18px;
   font-weight: 700;
@@ -948,16 +971,21 @@ SERVICES (CARDS)
   margin-top: 20px;
   margin-bottom: 8px;
 }
-
+[data-theme="light"] .services .card__title {
+  color: #1a1a1a;
+}
 .services .card__text {
   font-size: 14px;
   color: var(--color-text-muted);
-  flex-grow: 1; /* Растягивает текст, чтобы цены были на одном уровне */
+  flex-grow: 1;
   line-height: 1.5;
   margin-bottom: 12px;
 }
+[data-theme="light"] .services .card__text {
+  color: #5b6472;
+}
 
-.card__price {
+.services .card__price {
   font-size: 22px;
   font-weight: 800;
   background: linear-gradient(135deg, #60a5fa, #a78bfa, #c084fc);
@@ -967,8 +995,12 @@ SERVICES (CARDS)
   margin-bottom: 12px;
   filter: drop-shadow(0 0 18px rgba(96, 165, 250, 0.35));
 }
+[data-theme="light"] .services .card__price {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  filter: drop-shadow(0 0 18px rgba(37, 99, 235, 0.2));
+}
 
-.card__link {
+.services .card__link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -979,35 +1011,35 @@ SERVICES (CARDS)
   margin-bottom: 24px;
   align-self: flex-start;
 }
-
-.card__link:hover {
+[data-theme="light"] .services .card__link {
+  color: #2563eb;
+}
+.services .card__link:hover {
   gap: 10px;
   color: var(--color-accent-hover);
 }
+[data-theme="light"] .services .card__link:hover {
+  color: #1d4ed8;
+}
 
-/* ==========================================================
-   АДАПТИВ ДЛЯ УСЛУГ (2 В РЯД)
-   ========================================================== */
 @media (min-width: 640px) {
   .services__list {
-    grid-template-columns: repeat(2, 1fr); /* 2 колонки */
+    grid-template-columns: repeat(2, 1fr);
   }
-
-  /* Чуть увеличиваем текст на больших экранах */
-  .card__title {
+  .services .card__title {
     font-size: 22px;
   }
-  .card__text {
+  .services .card__text {
     font-size: 16px;
   }
-  .card__price {
+  .services .card__price {
     font-size: 26px;
   }
 }
 
 /* ==========================================================
-PRICING & PRICE TABLE
-========================================================== */
+   9. PRICING & PRICE TABLE
+   ========================================================== */
 .pricing__list {
   display: grid;
   gap: 20px;
@@ -1068,6 +1100,7 @@ PRICING & PRICE TABLE
   color: var(--color-accent);
   font-weight: 700;
 }
+
 .price-table-wrapper {
   overflow-x: auto;
   border-radius: var(--radius);
@@ -1117,6 +1150,7 @@ PRICING & PRICE TABLE
 .price-table a:hover {
   text-decoration: underline;
 }
+
 @media (min-width: 640px) {
   .pricing__list {
     grid-template-columns: repeat(2, 1fr);
@@ -1175,9 +1209,10 @@ PRICING & PRICE TABLE
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
 /* ==========================================================
-PORTFOLIO & SINGLE PORTFOLIO
-========================================================== */
+   10. PORTFOLIO
+   ========================================================== */
 .portfolio-filters {
   display: flex;
   flex-wrap: wrap;
@@ -1218,6 +1253,7 @@ PORTFOLIO & SINGLE PORTFOLIO
   color: var(--color-accent);
   font-weight: 600;
 }
+
 .portfolio__list {
   display: grid;
   gap: 20px;
@@ -1308,6 +1344,7 @@ PORTFOLIO & SINGLE PORTFOLIO
   text-align: center;
   margin-top: 32px;
 }
+
 /* Single Portfolio */
 .single-portfolio article {
   margin-bottom: 40px;
@@ -1387,7 +1424,6 @@ PORTFOLIO & SINGLE PORTFOLIO
 .single-portfolio__section--result {
   padding: 28px;
   background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  border-left: none;
   border-radius: var(--radius);
   color: #fff;
   box-shadow: var(--glow-purple);
@@ -1449,6 +1485,7 @@ PORTFOLIO & SINGLE PORTFOLIO
   border-top: 1px solid var(--color-border);
   max-width: 800px;
 }
+
 @media (min-width: 640px) {
   .portfolio__list,
   .single-portfolio__gallery {
@@ -1466,9 +1503,10 @@ PORTFOLIO & SINGLE PORTFOLIO
     font-size: 24px;
   }
 }
+
 /* ==========================================================
-PROCESS
-========================================================== */
+   11. PROCESS & REVIEWS
+   ========================================================== */
 .process__list {
   display: grid;
   gap: 16px;
@@ -1509,24 +1547,7 @@ PROCESS
   font-size: 14px;
   color: var(--color-text-muted);
 }
-@media (min-width: 640px) {
-  .process__list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (min-width: 960px) {
-  .process__list {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media (min-width: 1280px) {
-  .process__list {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
-/* ==========================================================
-REVIEWS
-========================================================== */
+
 .reviews__list {
   display: grid;
   gap: 16px;
@@ -1574,19 +1595,32 @@ REVIEWS
   color: var(--color-text-muted);
   width: 100%;
 }
+
 @media (min-width: 640px) {
+  .process__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .reviews__list {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (min-width: 960px) {
+  .process__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
   .reviews__list {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+@media (min-width: 1280px) {
+  .process__list {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
 /* ==========================================================
-FAQ (DETAILS / SUMMARY)
-========================================================== */
+   12. FAQ
+   ========================================================== */
 .faq-header {
   text-align: center;
   margin-bottom: 48px;
@@ -1619,13 +1653,7 @@ FAQ (DETAILS / SUMMARY)
   letter-spacing: -0.02em;
   color: var(--color-text);
 }
-.faq-header__title span {
-  background: linear-gradient(135deg, #60a5fa, #a78bfa, #c084fc);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 18px rgba(96, 165, 250, 0.35));
-}
+
 .faq {
   display: grid;
   grid-template-columns: 1fr;
@@ -1704,13 +1732,20 @@ FAQ (DETAILS / SUMMARY)
     font-size: 42px;
   }
 }
+
 /* ==========================================================
-CTA & FORMS (CONTACT FORM 7)
-========================================================== */
+   13. CTA & FORMS (CONTACT FORM 7)
+   ========================================================== */
 .cta {
   background: linear-gradient(135deg, #0a0f1e 0%, #111a2e 100%);
   padding: 80px 0;
 }
+[data-theme="light"] .cta {
+  background: var(--color-bg-gray);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
 .cta__inner {
   display: grid;
   gap: 48px;
@@ -1726,12 +1761,19 @@ CTA & FORMS (CONTACT FORM 7)
   margin-bottom: 16px;
   color: #fff;
 }
+[data-theme="light"] .cta__title {
+  color: var(--color-text);
+}
 .cta__text {
   font-size: 16px;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 24px;
   line-height: 1.6;
 }
+[data-theme="light"] .cta__text {
+  color: var(--color-text-muted);
+}
+
 .cta__benefits {
   display: flex;
   flex-direction: column;
@@ -1746,6 +1788,9 @@ CTA & FORMS (CONTACT FORM 7)
   font-size: 15px;
   color: rgba(255, 255, 255, 0.9);
 }
+[data-theme="light"] .cta__benefits li {
+  color: var(--color-text);
+}
 .cta__benefits li::before {
   content: "✓";
   position: absolute;
@@ -1754,6 +1799,10 @@ CTA & FORMS (CONTACT FORM 7)
   font-weight: 700;
   color: #a78bfa;
 }
+[data-theme="light"] .cta__benefits li::before {
+  color: var(--color-accent);
+}
+
 .cta__contacts {
   display: flex;
   flex-direction: column;
@@ -1761,6 +1810,9 @@ CTA & FORMS (CONTACT FORM 7)
   margin-top: 32px;
   padding-top: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+[data-theme="light"] .cta__contacts {
+  border-top: 1px solid var(--color-border);
 }
 .cta__contacts a {
   display: inline-flex;
@@ -1772,9 +1824,16 @@ CTA & FORMS (CONTACT FORM 7)
   text-decoration: none;
   transition: var(--transition);
 }
+[data-theme="light"] .cta__contacts a {
+  color: var(--color-accent);
+}
 .cta__contacts a:hover {
   color: #93c5fd;
 }
+[data-theme="light"] .cta__contacts a:hover {
+  color: var(--color-accent-hover);
+}
+
 .wpcf7 {
   background: var(--color-bg-card);
   border-radius: 20px;
@@ -1782,6 +1841,11 @@ CTA & FORMS (CONTACT FORM 7)
   box-shadow: var(--glow-purple);
   border: 1px solid var(--color-border);
 }
+[data-theme="light"] .wpcf7 {
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
 .wpcf7-form {
   display: flex;
   flex-direction: column;
@@ -1805,6 +1869,7 @@ CTA & FORMS (CONTACT FORM 7)
   font-weight: 600;
   color: var(--color-text);
 }
+
 .form__input {
   width: 100%;
   padding: 14px 18px;
@@ -1816,11 +1881,19 @@ CTA & FORMS (CONTACT FORM 7)
   color: var(--color-text);
   transition: var(--transition);
 }
+[data-theme="light"] .form__input {
+  background: #fafbfc;
+  color: var(--color-text);
+  border: 1.5px solid var(--color-border);
+}
 .form__input::placeholder {
   color: #64748b;
 }
 .form__input:hover {
   border-color: #334155;
+}
+[data-theme="light"] .form__input:hover {
+  border-color: #cbd5e1;
 }
 .form__input:focus {
   outline: none;
@@ -1830,6 +1903,11 @@ CTA & FORMS (CONTACT FORM 7)
     0 0 0 4px rgba(59, 130, 246, 0.15),
     var(--glow-blue);
 }
+[data-theme="light"] .form__input:focus {
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
 .form__textarea {
   resize: vertical;
   min-height: 120px;
@@ -1848,6 +1926,7 @@ CTA & FORMS (CONTACT FORM 7)
   color: var(--color-accent-hover);
   text-decoration: underline;
 }
+
 .wpcf7-submit {
   padding: 16px 24px;
   font-size: 16px;
@@ -1860,10 +1939,15 @@ CTA & FORMS (CONTACT FORM 7)
   background: linear-gradient(135deg, #3b82f6, #8b5cf6);
   color: #fff;
 }
+[data-theme="light"] .wpcf7-submit {
+  background: var(--color-accent);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
 .wpcf7-submit:hover {
   transform: translateY(-2px);
   box-shadow: var(--glow-strong);
 }
+
 .cf7-honeypot-field,
 .cf7-honeypot-wrap {
   position: absolute !important;
@@ -1915,6 +1999,7 @@ CTA & FORMS (CONTACT FORM 7)
     transform: rotate(360deg);
   }
 }
+
 @media (min-width: 960px) {
   .cta__inner {
     grid-template-columns: 1fr 1fr;
@@ -1928,9 +2013,10 @@ CTA & FORMS (CONTACT FORM 7)
     padding: 32px;
   }
 }
+
 /* ==========================================================
-CONTACTS GRID
-========================================================== */
+   14. CONTACTS GRID
+   ========================================================== */
 .contacts-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1973,6 +2059,7 @@ CONTACTS GRID
   color: var(--color-text-muted);
   margin-top: 4px;
 }
+
 @media (min-width: 640px) {
   .contacts-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1983,9 +2070,10 @@ CONTACTS GRID
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
 /* ==========================================================
-BLOG, SINGLE POST & PAGINATION
-========================================================== */
+   15. BLOG & SINGLE POST
+   ========================================================== */
 .posts-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -2068,7 +2156,7 @@ BLOG, SINGLE POST & PAGINATION
   padding-top: 8px;
   border-top: 1px solid var(--color-border);
 }
-/* Single Post */
+
 .post-full {
   max-width: 800px;
   margin: 0 auto;
@@ -2120,6 +2208,7 @@ BLOG, SINGLE POST & PAGINATION
   height: auto;
   display: block;
 }
+
 .entry-content {
   font-size: 17px;
   line-height: 1.75;
@@ -2182,6 +2271,7 @@ BLOG, SINGLE POST & PAGINATION
   border-radius: var(--radius-sm);
   margin: 32px 0;
 }
+
 .post-navigation {
   margin-top: 48px;
   padding-top: 32px;
@@ -2223,6 +2313,7 @@ BLOG, SINGLE POST & PAGINATION
 .post-navigation .nav-next {
   text-align: right;
 }
+
 .related-posts {
   margin-top: 64px;
   padding-top: 32px;
@@ -2286,7 +2377,7 @@ BLOG, SINGLE POST & PAGINATION
 .related-pages__item a:hover::after {
   transform: translateX(2px);
 }
-/* Pagination */
+
 .pagination {
   margin-top: 40px;
   display: flex;
@@ -2327,6 +2418,7 @@ BLOG, SINGLE POST & PAGINATION
 .pagination .page-numbers.next {
   padding: 0 16px;
 }
+
 @media (min-width: 640px) {
   .posts-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2356,9 +2448,10 @@ BLOG, SINGLE POST & PAGINATION
     font-size: 26px;
   }
 }
+
 /* ==========================================================
-ERROR 404
-========================================================== */
+   16. ERROR 404
+   ========================================================== */
 .error-404 {
   text-align: center;
   padding: 80px 0;
@@ -2437,15 +2530,22 @@ ERROR 404
     font-size: 40px;
   }
 }
+
 /* ==========================================================
-FOOTER & COOKIE BANNER
-========================================================== */
+   17. FOOTER & COOKIE BANNER
+   ========================================================== */
 .footer {
   background: #070b14;
   color: #cbd5e1;
   padding: 48px 0 0;
   border-top: 1px solid var(--color-border);
 }
+[data-theme="light"] .footer {
+  background: #ffffff;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+}
+
 .footer__inner {
   display: grid;
   gap: 32px;
@@ -2457,6 +2557,10 @@ FOOTER & COOKIE BANNER
   color: #fff;
   margin-bottom: 12px;
 }
+[data-theme="light"] .footer__logo {
+  color: var(--color-text);
+}
+
 .footer__text {
   font-size: 14px;
   line-height: 1.6;
@@ -2468,6 +2572,10 @@ FOOTER & COOKIE BANNER
   font-weight: 600;
   margin-bottom: 14px;
 }
+[data-theme="light"] .footer__title {
+  color: var(--color-text);
+}
+
 .footer__list {
   display: flex;
   flex-direction: column;
@@ -2477,6 +2585,10 @@ FOOTER & COOKIE BANNER
 .footer__list a:hover {
   color: #fff;
 }
+[data-theme="light"] .footer__list a:hover {
+  color: var(--color-accent);
+}
+
 .footer__address {
   font-style: normal;
   font-size: 14px;
@@ -2487,6 +2599,10 @@ FOOTER & COOKIE BANNER
 .footer__address a:hover {
   color: #fff;
 }
+[data-theme="light"] .footer__address a:hover {
+  color: var(--color-accent);
+}
+
 .footer__social {
   font-size: 14px;
   margin-top: 12px;
@@ -2494,6 +2610,10 @@ FOOTER & COOKIE BANNER
 .footer__social a:hover {
   color: #fff;
 }
+[data-theme="light"] .footer__social a:hover {
+  color: var(--color-accent);
+}
+
 .cookie-settings-link {
   font-size: 13px;
   margin-top: 12px;
@@ -2505,6 +2625,7 @@ FOOTER & COOKIE BANNER
 .cookie-settings-link a:hover {
   color: var(--color-accent);
 }
+
 .footer__bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: 40px;
@@ -2513,7 +2634,11 @@ FOOTER & COOKIE BANNER
   text-align: center;
   color: #94a3b8;
 }
-/* Cookie Banner */
+[data-theme="light"] .footer__bottom {
+  border-top: 1px solid var(--color-border);
+  color: #94a3b8;
+}
+
 .cookie-banner {
   position: fixed;
   bottom: 0;
@@ -2526,6 +2651,9 @@ FOOTER & COOKIE BANNER
   padding: 20px;
   animation: cookie-slide-up 0.3s ease;
 }
+[data-theme="light"] .cookie-banner {
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08);
+}
 @keyframes cookie-slide-up {
   from {
     transform: translateY(100%);
@@ -2534,6 +2662,7 @@ FOOTER & COOKIE BANNER
     transform: translateY(0);
   }
 }
+
 .cookie-banner__inner {
   max-width: var(--container);
   margin: 0 auto;
@@ -2561,6 +2690,7 @@ FOOTER & COOKIE BANNER
   padding: 10px 20px;
   font-size: 14px;
 }
+
 @media (min-width: 640px) {
   .footer__inner {
     grid-template-columns: 2fr 1fr 1fr;
@@ -2575,285 +2705,4 @@ FOOTER & COOKIE BANNER
   .cookie-banner__text {
     max-width: 70%;
   }
-}
-
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  padding: 6px 12px;
-
-  border: 1px solid rgba(59, 130, 246, 0.25);
-  border-radius: 999px;
-
-  background: rgba(59, 130, 246, 0.1);
-
-  color: #60a5fa;
-  font-size: 14px;
-  font-weight: 500;
-
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.12);
-}
-
-/* ==========================================================
-   ФИКСЫ ДЛЯ СВЕТЛОЙ ТЕМЫ (HERO / IDE)
-   ========================================================== */
-[data-theme="light"] .window {
-  background: #ffffff;
-  border: 1px solid #e5e9f0;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); /* Мягкая тень */
-}
-
-[data-theme="light"] .window__bar {
-  background: #f5f7fa;
-  border-bottom: 1px solid #e5e9f0;
-}
-
-/* Текст в шапке окна (console.js) */
-[data-theme="light"] .window__title {
-  color: #5b6472;
-}
-
-/* Код внутри IDE */
-[data-theme="light"] .ide__code {
-  color: #1a1a1a; /* Тёмный текст для читаемости */
-  background: #ffffff;
-}
-
-/* Подсветка синтаксиса для светлой темы (чтобы было красиво) */
-[data-theme="light"] .tok-selector {
-  color: #d946ef;
-} /* Розовый */
-[data-theme="light"] .tok-prop {
-  color: #2563eb;
-} /* Синий */
-[data-theme="light"] .tok-value {
-  color: #16a34a;
-} /* Зеленый */
-[data-theme="light"] .tok-brace {
-  color: #7c3aed;
-} /* Фиолетовый */
-[data-theme="light"] .tok-punct {
-  color: #64748b;
-} /* Серый */
-
-/* Скроллбар в IDE */
-[data-theme="light"] .ide__code::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-}
-
-/* Правое окно (Браузер) */
-[data-theme="light"] .window--browser .window__bar {
-  background: #f5f7fa;
-}
-
-[data-theme="light"] .browser__address {
-  background: #ffffff;
-  border: 1px solid #e5e9f0;
-  color: #1a1a1a;
-}
-
-[data-theme="light"] .browser__viewport {
-  background: #ffffff;
-}
-
-[data-theme="light"] .browser__title {
-  color: #1a1a1a;
-}
-
-/* Кнопка "Перезапустить" в браузере */
-[data-theme="light"] .browser__restart {
-  background: rgba(37, 99, 235, 0.08);
-  border-color: rgba(37, 99, 235, 0.2);
-  color: #2563eb;
-}
-[data-theme="light"] .browser__restart.is-visible:hover {
-  background: #2563eb;
-  color: #fff;
-}
-
-/* Точки (светофор) — делаем их чуть ярче, чтобы не сливались с белым */
-[data-theme="light"] .window__dot--red {
-  background: #ff5f56;
-}
-[data-theme="light"] .window__dot--yellow {
-  background: #ffbd2e;
-}
-[data-theme="light"] .window__dot--green {
-  background: #27c93f;
-}
-
-/* ==========================================================
-   ФИКСЫ ДЛЯ СВЕТЛОЙ ТЕМЫ (КАРТОЧКИ УСЛУГ)
-   ========================================================== */
-
-/* Фон самой карточки */
-[data-theme="light"] .card {
-  background: #ffffff;
-  border: 1px solid #e5e9f0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-/* Шапка мокапа (где точки) */
-[data-theme="light"] .card__image .window__bar {
-  background: #f5f7fa; /* Светло-серый, как в макетах */
-  border-bottom: 1px solid #e5e9f0;
-}
-
-/* Если у тебя рамка мокапа задана через .mockup-browser, то красим её фон */
-[data-theme="light"] .mockup-browser {
-  background: #ffffff;
-  border-color: #e5e9f0;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05); /* Мягкая тень */
-}
-
-/* Фон под картинкой (заглушка) */
-[data-theme="light"] .card__image {
-  background: #f5f7fa;
-}
-
-/* Красивое наведение на карточку в светлой теме */
-[data-theme="light"] .card:hover {
-  border-color: #2563eb; /* Синий акцент */
-  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.12); /* Синяя мягкая тень */
-  transform: translateY(-4px);
-}
-
-/* Текст внутри карточки */
-[data-theme="light"] .card__title {
-  color: #1a1a1a;
-}
-
-[data-theme="light"] .card__text {
-  color: #5b6472;
-}
-
-/* Цена (градиент оставляем, он хорошо смотрится на белом) */
-[data-theme="light"] .card__price {
-  /* Если градиент кажется бледным на белом, можно сделать его темнее */
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 18px rgba(37, 99, 235, 0.2)); /* Тень мягче */
-}
-
-[data-theme="light"] .card__link {
-  color: #2563eb;
-}
-[data-theme="light"] .card__link:hover {
-  color: #1d4ed8;
-}
-
-/* ==========================================================
-   СВЕТЛАЯ ТЕМА ДЛЯ CTA (ФОРМА ЗАЯВКИ)
-   ========================================================== */
-[data-theme="light"] .cta {
-  background: var(--color-bg-gray); /* Светло-серый фон вместо тёмного */
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-}
-
-[data-theme="light"] .cta__title {
-  color: var(--color-text); /* Чёрный заголовок */
-}
-
-[data-theme="light"] .cta__text {
-  color: var(--color-text-muted); /* Серый текст */
-}
-
-[data-theme="light"] .cta__benefits li {
-  color: var(--color-text); /* Тёмный текст преимуществ */
-}
-
-[data-theme="light"] .cta__benefits li::before {
-  color: var(--color-accent); /* Синяя галочка */
-}
-
-[data-theme="light"] .cta__contacts {
-  border-top: 1px solid var(--color-border);
-}
-
-[data-theme="light"] .cta__contacts a {
-  color: var(--color-accent); /* Синие ссылки */
-}
-
-[data-theme="light"] .cta__contacts a:hover {
-  color: var(--color-accent-hover);
-}
-
-/* Сама форма (Contact Form 7) */
-[data-theme="light"] .wpcf7 {
-  background: #ffffff;
-  border: 1px solid var(--color-border);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Мягкая тень */
-}
-
-[data-theme="light"] .form__label {
-  color: var(--color-text);
-}
-
-[data-theme="light"] .form__input {
-  background: #fafbfc;
-  color: var(--color-text);
-  border: 1.5px solid var(--color-border);
-}
-
-[data-theme="light"] .form__input:focus {
-  background: #ffffff;
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-}
-
-[data-theme="light"] .wpcf7-submit {
-  background: var(--color-accent); /* Синяя кнопка */
-  color: #ffffff;
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
-}
-
-[data-theme="light"] .form__note {
-  color: var(--color-text-muted);
-}
-
-/* ==========================================================
-   СВЕТЛАЯ ТЕМА ДЛЯ ФУТЕРА
-   ========================================================== */
-[data-theme="light"] .footer {
-  background: #ffffff; /* Белый футер */
-  border-top: 1px solid var(--color-border);
-  color: var(--color-text-muted); /* Серый текст */
-}
-
-[data-theme="light"] .footer__logo {
-  color: var(--color-text); /* Чёрный логотип */
-}
-
-[data-theme="light"] .footer__title {
-  color: var(--color-text); /* Чёрные заголовки колонок */
-}
-
-[data-theme="light"] .footer__list a,
-[data-theme="light"] .footer__address a,
-[data-theme="light"] .footer__social a {
-  color: var(--color-text-muted);
-  transition: var(--transition);
-}
-
-[data-theme="light"] .footer__list a:hover,
-[data-theme="light"] .footer__address a:hover,
-[data-theme="light"] .footer__social a:hover {
-  color: var(--color-accent); /* Синий при наведении */
-}
-
-[data-theme="light"] .footer__bottom {
-  border-top: 1px solid var(--color-border);
-  color: #94a3b8;
-}
-
-[data-theme="light"] .cookie-settings-link a {
-  color: var(--color-text-muted);
-}
-[data-theme="light"] .cookie-settings-link a:hover {
-  color: var(--color-accent);
 }
